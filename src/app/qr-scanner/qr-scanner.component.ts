@@ -6,13 +6,37 @@ import QrScanner from './qr-scanner.min.js';
   templateUrl: './qr-scanner.component.html',
   styleUrls: ['./qr-scanner.component.css']
 })
-export class QrScannerComponent implements OnInit, OnDestroy{
+export class QrScannerComponent implements OnInit, OnDestroy {
 
   scanner;
+  startOnWorkerInit = false;
 
   constructor() {
-    var video = document.getElementById('video')
-    //console.log(video)
+    this.initCameraWorker();
+  }
+  ngOnDestroy() {
+    if(this.scanner == null){
+      this.startOnWorkerInit = false;
+    }
+    else{
+      this.scanner.stop();
+      this.scanner.destroy();
+      this.scanner = null;
+      this.initCameraWorker();
+    }
+  }
+
+  ngOnInit() {
+    if(this.scanner == null){
+      this.startOnWorkerInit = true;
+    }
+    else{
+      this.scanner.start();
+    }
+  }
+
+  initCameraWorker = function() {
+    var video = document.getElementById("video")
     var body = document.getElementById('body')
     /*var st 
     navigator.mediaDevices.getUserMedia({video: true})
@@ -23,43 +47,23 @@ export class QrScannerComponent implements OnInit, OnDestroy{
         .catch(function(err) {
             console.error('INIT FAIL: ' + err)
         });  */
-
-
     QrScanner.hasCamera()
       .then(hasCamera => init())
       .catch(e => {
         console.error(e);
         displayErrorMesage("Camera is not suported in this brouser");
       })
+    const init = function () {
+      console.log(this)
+      this.scanner = new QrScanner(video, result => {
 
-    function init() {
-        this.scaner = new QrScanner(video, result => {
-        console.log(result);
-        this.scanner.stop();
         //pop up and wait redirect
       });
-      video.addEventListener('loadedmetadata', function (e) {
-        //console.log(video.videoWidth, video.videoHeight, document.width);
-
-        //body.style.width = video.videoWidth;
-        //video.style.left = "calc(" + video.videoHeight + "px/-2 +" + document.width+"px)"
-      });
-
+      
     }
-    function displayErrorMesage(e) {
+    const displayErrorMesage = function (e) {
       var body = document.getElementById('body');
     }
-    function popUpWindow(Mesage) {
-      var body = document.getElementById('body');
-      body.after('<div class="popup">redirecting</div>');
-    }
-  }
-  ngOnDestroy(){
-    this.scanner.stop();
-  }
-
-  ngOnInit() {
-    this.scanner.start();
   }
 
 }
