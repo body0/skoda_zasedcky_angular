@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
     exit.addEventListener("click", () => {
         side.style.width = "0px";
     });
+    side.style.width = "0px"
   }
 
 }

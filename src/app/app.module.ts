@@ -7,6 +7,7 @@ import { QrScannerComponent } from './qr-scanner/qr-scanner.component';
 import { StillButtonComponent } from './still-button/still-button.component';
 import { ListLastComponent } from './list-last/list-last.component';
 import { RoomInfoComponent } from './room-info/room-info.component';
+import { LoginMenuComponent } from './login-menu/login-menu.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RoomInfoComponent } from './room-info/room-info.component';
     QrScannerComponent,
     StillButtonComponent,
     ListLastComponent,
-    RoomInfoComponent
+    RoomInfoComponent,
+    LoginMenuComponent
   ],
   imports: [
     BrowserModule

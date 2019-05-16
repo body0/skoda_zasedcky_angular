@@ -1,80 +1,35 @@
-html, body{
-    min-height: 100%;
-    overflow-x: hidden; 
-}
-body{
-    position: relative;
-
-}
-.fixedButtonCircle{
-    position: fixed;
-    width: 20vw;
-    height: 20vw;
-    bottom: 5vw;
-    right: 5vw;
-    border-radius: 50%;
-    background-color: #4AA82E; 
-    box-shadow:  2px 2px 6px#555555;
-
-    display: flex;
-    align-items: center;
-    z-index: 10;
-}
-.fixedButtonCircle img{
-    margin: auto;
-    width:15vw;
-    height:15vw;
-}
-.dimmer{
-    position: fixed;
-    /* display: none; */
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;;
-    z-index: 15;
-    background-color: rgba(0,0,0,0.5);
-}
-
-
-
-
-
-
 .login {
     position: fixed;
+    left: 0px;
+    right: 0px;
     background: #eceeee;
     border: 1px solid #4aa82E;
     border-radius: 1vw;
-    height: 60vw;
-    
-    margin: 1vw auto 0;
-    width: 72vw;
+    height: 25vw;
+    margin: 0 auto 0;
+    width: 24vw;
     z-index: 20;
-
-    left: 50%;
-    transform: translate(-50%, 0);
   }
   input[type="Password"], input[type="text"] {
     border: 1px solid #a1a3a3;
-    border-radius: 2vw;
+    border-radius: 4px;
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
     color: #4AA82E;
-    height: 9.9vw;
-    margin: 5vw 0 0 8.55vw;
+    height: 3.3vw;
+    margin: 2.85vw 0 0 2.85vw;
     padding-left: 2vw;
     transition: box-shadow 0.3s;
-    width: 54vw;
+    width: 18vw;
   }
   input[type="Password"]:focus, input[type="text"]:focus {
-    box-shadow: 0 0 16px 9px #4aa82E ;
+    box-shadow: 0 0 4px 1px #4aa82E ;
     outline: 0;
   }
   
   input[type="submit"] {
-    width:54vw;
-    height:10.5vw;
+    width:18vw;
+    height:3.5vw;
     display:block;
     font-family:Arial, "Helvetica", sans-serif;
     font-size:1.5vw;
@@ -85,7 +40,7 @@ body{
     text-align:center;
     text-shadow:1px 1px 0px #37a69b;
     padding-top:0.5vw;
-    margin: 6vw 0 0 8.55vw;
+    margin: 2vw 0 0 2.85vw;
     position:relative;
     cursor:pointer;
     border: none;  
@@ -100,8 +55,8 @@ body{
   .support {
     color: #7f7f7f;
     display: inline-block;
-    font: 4vw sans-serif;
-    margin:5vw 0 0 16vw; 
+    font: 1.65vw sans-serif;
+    margin:2.5vw 0 0 4.3vw; 
     position: relative;
     
   }

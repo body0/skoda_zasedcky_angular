@@ -1,12 +1,25 @@
 
+<div id="dim" class="dimmer"></div>
 <div [ngSwitch]="globalState">
-    <app-qr-scanner *ngSwitchCase="1"></app-qr-scanner>
-    <app-list-last *ngSwitchCase="2"></app-list-last>
-    <app-header></app-header>
-    <div *ngSwitchCase="1" (click)="changeState(0)" class="fixedButtonCircle">
-        <img redirect="./end" src="../../assets/img/baseline-undo-24px.svg" alt="back">
-    </div>
-    <div *ngSwitchCase="0" (click)="changeState(1)" class="fixedButtonCircle">
-        <img redirect="./end" src="../../assets/img/baseline-undo-24px.svg" alt="back">
-    </div>
+        <div style="height: 10vh; padding: 1em; top:0px; left:0px;"></div>
+        <!-- <app-login-menu *ngIf="DEBUG_notSigned"></app-login-menu> -->
+        <div *ngIf="DEBUG_notSigned" class="login" style="margin-top: 50%">
+            <input type="text" placeholder="Uživatelské jméno" id="username"style="font-size:30px">  
+            <input type="password" placeholder="Heslo" id="password"style="font-size:30px">  
+            <input type="submit" (click)="aut()" value="Přihlásit"style="font-size:30px">
+            <a href="#" class="support">Potřebujete pomoct?</a>
+        </div>
+        <app-qr-scanner *ngSwitchCase="1"></app-qr-scanner>
+        <app-list-last *ngSwitchCase="2"></app-list-last>
+        <app-room-info *ngSwitchCase="3"> </app-room-info>
+        <app-header></app-header>
+        <div *ngSwitchCase="1" (click)="changeState(2)" class="fixedButtonCircle">
+            <img redirect="./end" src="../../assets/img/baseline-undo-24px.svg" alt="back">
+        </div>
+        <div *ngSwitchCase="3" class="fixedButtonCircle">
+            <img src="../../assets/img/baseline-add-24px.svg" alt="brk">
+        </div>
+        <div *ngSwitchCase="2" (click)="changeState(1)" class="fixedButtonCircle">
+            <img redirect="./end" src="../../assets/img/brk.png" alt="back">
+        </div>
 </div>

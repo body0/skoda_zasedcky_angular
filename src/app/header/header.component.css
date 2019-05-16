@@ -17,7 +17,8 @@
 }
 .side{
     position: absolute;
-    width: 60%;
+    /* width: 60%; */
+    width: 0px;
     min-height: 100%;
     top: 0px;
     left: 0px;

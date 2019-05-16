@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import QrScanner from './qr-scanner.min.js';
 
 @Component({
@@ -6,10 +6,12 @@ import QrScanner from './qr-scanner.min.js';
   templateUrl: './qr-scanner.component.html',
   styleUrls: ['./qr-scanner.component.css']
 })
-export class QrScannerComponent implements OnInit {
+export class QrScannerComponent implements OnInit, OnDestroy {
 
   constructor() { }
-
+  ngOnDestroy(){
+    
+  }
   ngOnInit() {
     var video = document.getElementById('video')
     console.log(video)

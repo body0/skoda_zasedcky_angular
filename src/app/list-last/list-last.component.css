@@ -6,24 +6,26 @@
     "name name"
     "owner time";
     margin: 3%;
-    padding: 2%;
+    padding: 1em 0.8em;
     text-align: center;
     box-shadow: var(--mainShadow);
     
     background-color: #eee;
     font-family: Helvetica;
-    font-size: 3em;
+    font-size: 1.2em;
 }
 .apRec .time{
     grid-area: time;
-
+    text-align: right;
 }
 .apRec .name{
     grid-area: name;
     word-wrap: break-word;
+    font-size: 1.8em;
 }
 .apRec .owner{
     grid-area: owner;
+    text-align: left;
 }
 .popUpBox{
     position: fixed;
