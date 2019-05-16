@@ -3,9 +3,9 @@
 <div [ngSwitch]="globalState">
         <div style="height: 10vh; padding: 1em; top:0px; left:0px;"></div>
         <!-- <app-login-menu *ngIf="DEBUG_notSigned"></app-login-menu> -->
-        <div *ngIf="DEBUG_notSigned" class="login" style="margin-top: 50%">
-            <input type="text" placeholder="Uživatelské jméno" id="username"style="font-size:30px">  
-            <input type="password" placeholder="Heslo" id="password"style="font-size:30px">  
+        <div *ngIf="DEBUG_notSigned" class="login" style="margin-top: 50%; border-radius: 10px">
+            <input type="text" placeholder="Uživatelské jméno" id="username"style="font-size:20px">  
+            <input type="password" placeholder="Heslo" id="password"style="font-size:20px">  
             <input type="submit" (click)="aut()" value="Přihlásit"style="font-size:30px">
             <a href="#" class="support">Potřebujete pomoct?</a>
         </div>

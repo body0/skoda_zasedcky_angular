@@ -6,15 +6,13 @@ import QrScanner from './qr-scanner.min.js';
   templateUrl: './qr-scanner.component.html',
   styleUrls: ['./qr-scanner.component.css']
 })
-export class QrScannerComponent implements OnInit, OnDestroy {
+export class QrScannerComponent implements OnInit, OnDestroy{
 
-  constructor() { }
-  ngOnDestroy(){
-    
-  }
-  ngOnInit() {
+  scanner;
+
+  constructor() {
     var video = document.getElementById('video')
-    console.log(video)
+    //console.log(video)
     var body = document.getElementById('body')
     /*var st 
     navigator.mediaDevices.getUserMedia({video: true})
@@ -35,12 +33,11 @@ export class QrScannerComponent implements OnInit, OnDestroy {
       })
 
     function init() {
-      const scanner = new QrScanner(video, result => {
+        this.scaner = new QrScanner(video, result => {
         console.log(result);
-        scanner.stop();
+        this.scanner.stop();
         //pop up and wait redirect
       });
-      scanner.start();
       video.addEventListener('loadedmetadata', function (e) {
         //console.log(video.videoWidth, video.videoHeight, document.width);
 
@@ -56,6 +53,13 @@ export class QrScannerComponent implements OnInit, OnDestroy {
       var body = document.getElementById('body');
       body.after('<div class="popup">redirecting</div>');
     }
+  }
+  ngOnDestroy(){
+    this.scanner.stop();
+  }
+
+  ngOnInit() {
+    this.scanner.start();
   }
 
 }

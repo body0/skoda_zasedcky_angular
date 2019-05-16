@@ -16,7 +16,7 @@
     justify-content: space-between;
 }
 .side{
-    position: absolute;
+    position: fixed;
     /* width: 60%; */
     width: 0px;
     min-height: 100%;

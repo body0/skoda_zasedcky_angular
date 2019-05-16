@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'skoda';
-  globalState = 2;
+  globalState = 1;
   DEBUG_notSigned =  true;
   changeState = function(stete){
     if(this.DEBUG_notSigned) return;
