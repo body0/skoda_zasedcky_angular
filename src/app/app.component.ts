@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'skoda';
+  globalState = 1;
+  changeState = function(stete){
+    this.globalState = stete;
+  }
 }

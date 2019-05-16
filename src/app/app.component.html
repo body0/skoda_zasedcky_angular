@@ -1,6 +1,12 @@
 
-<app-qr-scanner></app-qr-scanner>
-<app-header></app-header>
-<app-still-button>
+<div [ngSwitch]="globalState">
+    <app-qr-scanner *ngSwitchCase="1"></app-qr-scanner>
+    <app-list-last *ngSwitchCase="2"></app-list-last>
+    <app-header></app-header>
+    <div *ngSwitchCase="1" (click)="changeState(0)" class="fixedButtonCircle">
         <img redirect="./end" src="../../assets/img/baseline-undo-24px.svg" alt="back">
-</app-still-button>
+    </div>
+    <div *ngSwitchCase="0" (click)="changeState(1)" class="fixedButtonCircle">
+        <img redirect="./end" src="../../assets/img/baseline-undo-24px.svg" alt="back">
+    </div>
+</div>
