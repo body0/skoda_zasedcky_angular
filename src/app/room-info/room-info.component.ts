@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-room-info',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomInfoComponent implements OnInit {
 
-  constructor() { }
+  
+  RoomInfo = {}
 
+  constructor(private apiServise:ApiService) {
+    
+   }
+   @Input("RoomID") 
+   set RoomID (RoomID){
+     console.log("ZR", RoomID)
+     this.apiServise.getRoomInfo(RoomID)
+    .then( (res) => {
+      this.RoomInfo = res;
+    })
+   }
   ngOnInit() {
   }
 

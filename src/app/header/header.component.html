@@ -5,8 +5,8 @@
   <div style="
         display: flex;
         justify-items: center;">
-    <img src="../../assets/img/baseline-search-24px.svg" alt="search" style="width: 8vh;">
-    <input class="search" type="text" >
+    <img (click)="search()" src="../../assets/img/baseline-search-24px.svg" alt="search" style="width: 8vh;">
+    <input id="searchBox" class="search" type="text" >
   </div>
 </div>
 <div id="sideBlock" class="side" style="width: 60%;">
@@ -16,10 +16,16 @@
   <li class="list" style="
       font-size: 1.8em;
       text-align: center;">
-      <a href="./index.html">Kalendář</a>
-      <a href="./index.html">Čtečka QR kódů</a>
-      <a href="./index.html">Účet</a>
-      <a href="./index.html">O nás</a>
+      <!-- 
+        <a href="./index.html">Kalendář</a>
+        <a href="./index.html">Čtečka QR kódů</a>
+        <a href="./index.html">Účet</a>
+        <a href="./index.html">O nás</a>
+       -->
+      <div (click)="changeGlobalState(-1)">Kalendář</div>
+      <div (click)="changeGlobalState(1)">Čtečka QR kódů</div>
+      <div (click)="changeGlobalState(-1)">Účet</div>
+      <div (click)="changeGlobalState(-1)">O nás</div>
   </li>
 </div>
 <script type="text/javascript" src="./move.js"></script> 

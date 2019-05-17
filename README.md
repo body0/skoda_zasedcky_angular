@@ -16,12 +16,115 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Škoda zasedačky
+PWA app for Škoda auto
 
-## Running end-to-end tests
+## Technology:<br/>
+## Database API
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Information about room**
+- /api/roomData<br/>
+    example request:
+    ```
+    {
+        "roomId":<integer>
+    }
+    ```
+    example response:
+    ```
+    {   
+        "roomId": <integer>
+        "name": <string>
+        "support_contact": <string>
+        "seats": <integer>
+        "utility":{
+            "tv": <bool>
+            "solid_door": <bool>
+            "reproducor": <bool>
+            "dataprojector": <bool>
+        }
+        "reportedDefects":[
+            {
+                "name": <string>
+                "reportDate" <yyyy-mm-dd>
+                "expectedRepairDate": <yyyy-mm-dd>
+                "description": <string>
+                "defectUtilyty": [<utylity>]
+            }
+        ]
+    }
+    ```
+    
+    //Date in format: YYYY-MM-DD hh-mm-ss.sss  For example: 2019-05-14 00:00:00.000
+    //Zkontroluj zda je platný
+    
+    **Room reservation schedule**
+- /api/roomSchedule <br/>
+    example request:
+    ```
+    {
+        "roomId":<integer>
+    }
+    ```
+    example response:
+    ```
+    {   
+        "roomId": <room id>
+        "schedule_list":[
+            {
+                "owner": <user id>
+                "name": <string>
+                "description": <string>
+                "start" <>
+                "end": <>
+            }
+        ]
+    }
+    ```
+    **Add new room reservation schedule**
+    - /api/addRoomReservation<br/>
+    
+    
+    **List of rooms where users have meating**
+- /api/getUserSchedule<br/>
+    example request:
+    ```
+    {
+        "userName":<string>
+        ?"password":<string>
+    }
+    ```
+    example response:
+    ```
+    {   
+        "roomId": <room id>
+        "schedule_list":[
+            {
+                "owner": <user id>
+                "name": <string>
+                "description": <string>
+                "start" <>
+                "end": <>
+            }
+        ]
+    }
+    ```
+    
+    
+    **Log-in**
+- /api/getUserSession<br/>
+    example request:
+    ```
+    {
+        "userName":<string>
+        "password":<string>
+    }
+    ```
+    example response:<br/>
+        -return sesion cookie
+    ```
+    {   
+        "userId": <room id>
+        "email": <string>
+    }
+    ```
