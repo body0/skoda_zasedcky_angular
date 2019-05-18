@@ -1,63 +1,58 @@
-
-<!--  
-<div class="roomInfo"> 
-    <h2>ID:24</h2>
-    <h3>Seats: 4</h3>
-    <h3>Support: nykl.servis@skoda.cz</h3>
-    <p>description</p>
-    <div class="utilityContainer">
-
-    </div>
-    <div class="wiewSwitch">
-        <div id="howrButton" style="border-right: solid white;">
-            <p>Hour</p>
-        </div>
-        <div id="monthButton" style="border-left: solid white;">
-            <p>Month</p>
-        </div>
-    </div>
-    
-</div>
-
--->
-<div style="">
-  <div class="roomInfo"> 
+<div>
+  <div class="blockContainer">
+    <dir class="roomInfo subBlockContainer">
       <h2>ID:{{RoomInfo.id}}</h2>
       <h3>Seats: {{RoomInfo.chair}}</h3>
       <h3>Support: {{RoomInfo.contact}}</h3>
-      <p>Lorem ipsum dolor sit amet, nec sanctus postulant contentiones et, duis nostrud fierent cu has. Mutat minim indoctum quo id. Ne quo illum accusata percipitur. Appareat honestatis definitionem nec et. Te civibus fierent scaevola duo, qui eu erant laoreet postulant. Ius ut nostro aliquando similique, per at agam summo dolor. Inermis offendit eu eum, cu assum aeterno sit, ei nec erat meliore expetendis.</p>
-      <div class="utilityContainer"></div>
-      
-  </div> 
-  <div class="wiewSwitch">
-      <div id="howrButton" style="border-right: solid white;">
-          <p>Day</p>
-      </div>
-      <div id="monthButton" style="border-left: solid white;">
-          <p>Month</p>
-      </div>
+      <p *ngIf="moreInfoMode">Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu.
+        Impetus malorum ocurreret et sed, eam ex ubique debitis feugait. Probatus eleifend pro in, mea nullam intellegat
+        eu. Accusamus suscipiantur eam ne.</p>
+      <p *ngIf="!moreInfoMode" class="underline" (click)="moreInfo()">Show more</p>
+      <p *ngIf="moreInfoMode" class="underline" (click)="moreInfo()">Show less</p>
+    </dir>
+
   </div>
-  <div class="planWiew">
-      <div class="siderContiner">
-          <div class="line">
-              <dir class="time">8</dir>
-              <div class="record"></div> 
-          </div>
+  <div class="blockContainer">
+    <dir class="nextIn subBlockContainer">
+      <h2>Next In:</h2>
+      <h3>20 min</h3>
+      <button mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show schedule</button>
+    </dir>
+  </div>
+  <div class="blockContainer">
+    <dir class="faults subBlockContainer">
+      <h2>Utility and faults:</h2>
+      <div class="utilitContainer" style="margin: 1em auto 0 auto;">
+        <div *ngFor="let utility of RoomInfo.utility; "> 
+            <img src={{utility}} alt="utility picture">
+        </div>
+       <!--  <div style="position:relative;">
+          <img style="position:absolute" src="../../assets/img/utility/dvř.png" alt="">
+        </div>
+        <div>
+          <img src="../../assets/img/utility/rpr.png" alt="">
+        </div> -->
       </div>
-      <div class="siderContiner">
-          <div class="line">
-              <dir class="time">9</dir>
-              <div class="record"></div> 
-          </div>
+      <h3>2 Reported Faults</h3>
+      <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report Failure</button>
+      <div *ngIf="moreFaultsMode">
+        <div class="moreFaults">
+          Fault header
+          <p>Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu. Impetus malorum
+            ocurreret et sed</p>
+          <p class="faultNote">examle@skoda.com</p>
+          <p class="faultNote">7.4.2019</p>
+        </div>
+        <div class="moreFaults">
+          Fault header
+          <p>Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu. Impetus malorum
+            ocurreret et sed</p>
+          <p class="faultNote">examle@skoda.com</p>
+          <p class="faultNote">7.4.2019</p>
+        </div>
       </div>
-      <div class="siderContiner">
-          <div class="line">
-              <dir class="time">10</dir>
-              <div class="record"></div> 
-          </div>
-      </div>
-      <div class="siderContiner" style="background-color:red;">1</div>
-      <div class="siderContiner" style="background-color:green;">2</div>
-      <div class="siderContiner" style="background-color:blue;">3</div>
+      <p *ngIf="!moreFaultsMode" class="underline" style="margin-top: 0.8rem;" (click)="moreFaults()">Show more</p>
+      <p *ngIf="moreFaultsMode" class="underline" (click)="moreFaults()">Show less</p>
+    </dir>
   </div>
 </div>

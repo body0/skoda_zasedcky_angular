@@ -11,6 +11,12 @@ import { RoomInfoComponent } from './room-info/room-info.component';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
 import { UtylityListComponent } from './utylity-list/utylity-list.component';
 import { UtilityContainerComponent } from './utility-container/utility-container.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatButtonModule} from '@angular/material/button';
+import { ReportFaultUtilityDialogComponent } from './report-fault-utility-dialog/report-fault-utility-dialog.component';
+import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +28,16 @@ import { UtilityContainerComponent } from './utility-container/utility-container
     RoomInfoComponent,
     LoginMenuComponent,
     UtylityListComponent,
-    UtilityContainerComponent
+    UtilityContainerComponent,
+    ScheduleComponent,
+    ReportFaultUtilityDialogComponent,
+    ScheduleDialogComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule 
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

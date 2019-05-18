@@ -1,80 +1,105 @@
 *{
     font-family: Helvetica;
-    
+    color: #505050;
 }
 
-.utilityContainer{
-    display: flex;
-    justify-items: center;
-    justify-content: space-evenly;
-    flex-wrap:wrap;
+.blockContainer{
+    width: 94%;
+    background-color: white;
+    margin: 1em auto;
+    border-radius: 0.3em;
+    box-shadow:  2px 2px 6px#555555;
 }
-.roomInfo{
-    color: #505050;
-    position: relative;
-    box-shadow: var(--mainShadow);
-    min-height: 38vh;
-    padding: 0 0 2em 0;
-    /* background-color: #E0E0E0; */
+
+.subBlockContainer{
+    padding: 1.5em;
 }
-.roomInfo *{
+.subBlockContainer :not(utilitContainer){
     margin: 0;
 }
 .roomInfo h2{
+    font-size: 3em;
     width: fit-content;
-    font-size: 3.5em;
     border-bottom: solid #b0b0b0;
 }
 .roomInfo h3{
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
-.roomInfo p{
-    font-size: 1em;
+.underline{
+    width: fit-content;
+    border-bottom: solid #b0b0b0 1px    ;
 }
-.planWiew {
-    position: relative;
-    left: 0px;
-    display: flex;
-    width: 100%;
-    height: 50vh;
-    overflow-x: auto;
-    color: #505050;
+.nextIn h2{
+    font-size: 1.5em;
+    width: fit-content;
+    border-bottom: solid #b0b0b0;
 }
-.siderContiner{
-    min-width: 100%;
-    height: 100%;
-}
-.line{
-    height: 50%;
-    width: 100%;
-    border-bottom: solid #505050;;
-}
-.record{
-    position: absolute;
-    width: 300px;
-    height: 10%;
-    bottom: 45%;
-    background-color: gold; 
-    border-radius: 5em;
-}
-.time{
-    font-size: 5em;
+.nextIn h3{
     text-align: center;
-    margin:  auto;
+    font-size: 2.5em;
 }
-.wiewSwitch {
-    position: relative;  
-    width: 100%;
-    height: 8vh;
-    display: flex; 
-}
-.wiewSwitch div {
-    width: 50%;
+button{
+    width: 100%; 
+    height: 2.5em; 
     background-color: #4AA82E;
     color: white;
+}
+
+.faults h2{
+    font-size: 1.5em;
+    width: fit-content;
+    border-bottom: solid #b0b0b0;
+}
+.faults h3{
     font-size: 2em;
     text-align: center;
+    margin-top: 0.5rem;
+    color: #F44336;
+}   
+
+.utilitContainer{
+    display: flex;
+    justify-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap:wrap;
+    margin: 1.5rem auto 0 auto;
 }
-.wiewSwitch div p{
-   margin: auto;
+.utilitContainer div img{
+    width: 3em;
+    height: 3em;
+}
+
+
+.faults .moreFaults p{
+    display: block;
+    padding-left: 10%;
+    font-weight: normal;
+}
+.faults .moreFaults{
+    position: relative;
+    margin: 0.8em 0;
+    display: inline-block;
+    font-weight: bold;
+}
+.faults .faultNote{
+    text-align: right;
+}
+
+.popUp{
+    position: fixed;
+    z-index: 20;
+    background-color: white;
+    border-radius: 0.3em;
+
+     
+
+    margin: auto;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: auto;
+}
+.popUp div{
+    margin: 1.5em;
 }

@@ -1,0 +1,47 @@
+.planWiew {
+    position: relative;
+    left: 0px;
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    overflow-x: auto;
+    color: #505050;
+}
+.siderContiner{
+    min-width: 100%;
+    height: 100%;
+}
+.line{
+    height: 50%;
+    width: 100%;
+    border-bottom: solid #505050;;
+}
+.record{
+    position: absolute;
+    width: 300px;
+    height: 10%;
+    bottom: 45%;
+    background-color: gold; 
+    border-radius: 5em;
+}
+.time{
+    font-size: 5em;
+    text-align: center;
+    margin:  auto;
+}
+.wiewSwitch {
+    position: relative;  
+    width: 100%;
+    height: 8vh;
+    display: flex; 
+}
+.wiewSwitch div {
+    width: 50%;
+    background-color: #4AA82E;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+.wiewSwitch div p{
+   margin: auto;
+}

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'skoda';
-  globalState = 1;
+  globalState = 3;
   DEBUG_notSigned =  false;
   roomId = 64;
   
