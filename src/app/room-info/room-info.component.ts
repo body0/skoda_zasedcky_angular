@@ -11,7 +11,7 @@ export class RoomInfoComponent implements OnInit {
   moreInfoMode:boolean = false;
   moreFaultsMode:boolean = false;
   RoomInfo = {}   
-  
+  UtilityImageURLList = []
 
   constructor(private apiServise: ApiService) {
     
@@ -20,9 +20,19 @@ export class RoomInfoComponent implements OnInit {
   set RoomID(RoomID) {
     this.apiServise.getRoomInfo(RoomID)
       .then((res) => {
-        res.utility = res.utility.map( (val)=> {
-          return '../../assets/img/utility/' + val + '.png';
-        })
+        var defect = []
+        if("reportedDefects" in res){
+          defect = res.reportedDefects.map( (val) => val.defectUtilyty );
+        } 
+        if("utility" in res){
+          console.log("in")
+          this.UtilityImageURLList = res.utility.map( (val)=> {
+            if(val in defect)
+            return '../../assets/img/utility/' + val + '-defect.png';
+            else
+             return '../../assets/img/utility/' + val + '.png';
+          })    
+        } 
         this.RoomInfo = res;
       })
   }

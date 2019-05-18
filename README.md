@@ -37,19 +37,14 @@ PWA app for Škoda auto
         "name": <string>
         "support_contact": <string>
         "seats": <integer>
-        "utility":{
-            "tv": <bool>
-            "solid_door": <bool>
-            "reproducor": <bool>
-            "dataprojector": <bool>
-        }
+        "utility": [ <string representation of utility name> ]
         "reportedDefects":[
             {
                 "name": <string>
                 "reportDate" <yyyy-mm-dd>
                 "expectedRepairDate": <yyyy-mm-dd>
                 "description": <string>
-                "defectUtilyty": [<utylity>]
+                "defectUtilyty": <utylity>
             }
         ]
     }
