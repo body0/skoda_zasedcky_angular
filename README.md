@@ -6,20 +6,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
 
 # Škoda zasedačky
 PWA app for Škoda auto
 
 ## Technology:<br/>
+    -Angualr 7.3.4.  
+    -Angular Material  
+    -QR Scanner [link](https://www.npmjs.com/package/qr-scanner)  
+
+## Project structure  
+    -Angular Cutorm Theme: src/app/skodaTheme.scss
+
 ## Database API
 
 **Information about room**
@@ -37,6 +38,7 @@ PWA app for Škoda auto
         "name": <string>
         "support_contact": <string>
         "seats": <integer>
+        "description": <string>
         "utility": [ <string representation of utility name> ]
         "reportedDefects":[
             {
@@ -45,6 +47,7 @@ PWA app for Škoda auto
                 "expectedRepairDate": <yyyy-mm-dd>
                 "description": <string>
                 "defectUtilyty": <utylity>
+                "email": <email of user, who reported the defect>
             }
         ]
     }
@@ -52,6 +55,25 @@ PWA app for Škoda auto
     
     //Date in format: YYYY-MM-DD hh-mm-ss.sss  For example: 2019-05-14 00:00:00.000
     //Zkontroluj zda je platný
+
+    **Add new defect report**
+    example request:
+    ```
+    {
+        "roomId":<integer>
+        "data":{
+            "name": <string>
+            "description": <string>
+            "defectUtilyty": <utylity>
+            "email": <email of user, who reported the defect>
+        }
+    }
+    ```
+    example response:
+    ```
+    {   
+    }
+    ```
     
     **Room reservation schedule**
 - /api/roomSchedule <br/>
@@ -76,7 +98,7 @@ PWA app for Škoda auto
         ]
     }
     ```
-    **Add new room reservation schedule**
+    **Add new room reservation**
     - /api/addRoomReservation<br/>
     
     

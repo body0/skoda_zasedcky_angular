@@ -1,0 +1,118 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary: (
+    50 : #e9f5e6,
+    100 : #c9e5c0,
+    200 : #a5d497,
+    300 : #81c26d,
+    400 : #66b54d,
+    500 : #4ba82e,
+    600 : #44a029,
+    700 : #3b9723,
+    800 : #338d1d,
+    900 : #237d12,
+    A100 : #bcffb1,
+    A200 : #90ff7e,
+    A400 : #64ff4b,
+    A700 : #4eff31,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-secondary: (
+    50 : #ffffff,
+    100 : #ffffff,
+    200 : #ffffff,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-tertiary: (
+    50 : #fff9e7,
+    100 : #fff0c2,
+    200 : #ffe699,
+    300 : #ffdc70,
+    400 : #ffd552,
+    500 : #ffcd33,
+    600 : #ffc82e,
+    700 : #ffc127,
+    800 : #ffba20,
+    900 : #ffae14,
+    A100 : #ffffff,
+    A200 : #fffdfb,
+    A400 : #ffeac8,
+    A700 : #ffe1ae,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the default theme (same as the example above).
+$my-theme-primary: mat-palette($md-primary, 900);
+$my-theme-secondary: mat-palette($md-secondary);
+$my-theme-accent:  mat-palette($md-tertiary);
+$my-theme-warn   : mat-palette($mat-red);
+$my-theme-all:   mat-light-theme($md-primary, $md-primary, $my-theme-warn);
+
+
+// Include the default theme styles.
+@include angular-material-theme($my-theme-all);

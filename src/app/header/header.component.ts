@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   search(){
     const searchBox = document.getElementById("searchBox");
     console.log("in")
-    this.apiService.getRoomInfo("1");
+    this.apiService.getRoomInfo(1);
   }
   changeGlobalState(newState: number){
     

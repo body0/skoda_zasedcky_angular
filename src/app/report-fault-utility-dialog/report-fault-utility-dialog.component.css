@@ -1,1 +1,10 @@
 /* .mat-focused .mat-form-field-label{ color: #ee6e73; } .mat-focused .mat-form-field-underline .mat-form-field-ripple{ background: #ee6e73; } */
+.full-width{
+    width: 100%;
+}
+.submit{
+    width: 100%;
+    margin: auto; border: 0px; 
+    background-color: #4ba82e;
+    color: white;
+}
