@@ -13,6 +13,7 @@
     </app-qr-scanner>
     <app-list-last *ngSwitchCase="2"></app-list-last>
     <app-room-info [RoomID]="roomId" *ngSwitchCase="3"> </app-room-info>
+    <app-schedule *ngSwitchCase="4" ></app-schedule>
     <app-header (GlobaStateChange)=changeState($event)></app-header>
 
 

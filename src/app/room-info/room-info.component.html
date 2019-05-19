@@ -12,18 +12,20 @@
     </dir>
 
   </div>
-  <div class="blockContainer">
-    <dir class="nextIn subBlockContainer">
+  <div class="blockContainer" style="background-color: rgba(255,255,255,0);">
+    <dir class="nextIn subBlockContainer" style="background-color: white; margin-bottom: 0;">
       <h2>Next In:</h2>
       <h3>20 min</h3>
       <button mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show schedule</button>
+      
     </dir>
+    <app-schedule *ngIf="showShedule"></app-schedule>
   </div>
   <div class="blockContainer">
     <dir class="faults subBlockContainer">
       <h2>Utility and faults:</h2>
       <div class="utilitContainer" style="margin: 1em auto 0 auto;">
-        <div *ngFor="let utility of UtilityImageURLList; "> 
+        <div *ngFor="let utility of UtilityImageURLList;"> 
             <img src={{utility}} alt="utility picture">
         </div>
        <!--  <div style="position:relative;">

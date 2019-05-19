@@ -14,6 +14,7 @@ export class RoomInfoComponent implements OnInit {
 
   moreInfoMode: boolean = false;
   moreFaultsMode: boolean = false;
+  showShedule:boolean = false;
   RoomInfo = {}
   UtilityImageURLList = []
 
@@ -59,10 +60,13 @@ export class RoomInfoComponent implements OnInit {
   moreFaults() {
     this.moreFaultsMode = !this.moreFaultsMode;
   }
-  showSchedule() {
+  /* showSchedule() {
     const dialogRef = this.dialog.open(ScheduleDialogComponent, {
       width: '85vw'
     });
+  } */
+  showSchedule() {
+    this.showShedule = true;
   }
   reportFaultUtility() {
     const dialogRef = this.dialog.open(ReportFaultUtilityDialogComponent, {

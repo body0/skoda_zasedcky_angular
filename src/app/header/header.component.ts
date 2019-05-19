@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() GlobaStateChange = new EventEmitter();
 
-  constructor(private apiService:ApiService ) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     const menu = document.getElementById('sideMenu');
@@ -18,21 +18,24 @@ export class HeaderComponent implements OnInit {
     const side = document.getElementById('sideBlock');
 
     menu.addEventListener("click", () => {
-        side.style.width = "60%";
+      side.style.width = "60%";
     });
 
     exit.addEventListener("click", () => {
-        side.style.width = "0px";
+      side.style.width = "0px";
     });
     side.style.width = "0px"
   }
-  search(){
-    const searchBox = document.getElementById("searchBox");
-    console.log("in")
-    this.apiService.getRoomInfo(1);
+  search() {
+    const searchBox:any = document.getElementById("searchBox");
+    if (!isNaN(searchBox.value))
+      this.apiService.getRoomInfo(parseInt(searchBox.value));
+    else
+      console.warn("not a integer in seach bar", searchBox.value)
+
   }
-  changeGlobalState(newState: number){
-    
+  changeGlobalState(newState: number) {
+
     this.GlobaStateChange.emit(newState);
   }
 

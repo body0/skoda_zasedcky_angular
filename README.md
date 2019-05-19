@@ -28,13 +28,13 @@ PWA app for Škoda auto
     example request:
     ```
     {
-        "roomId":<integer>
+        "id":<integer>
     }
     ```
     example response:
     ```
     {   
-        "roomId": <integer>
+        "id": <integer>
         "name": <string>
         "support_contact": <string>
         "seats": <integer>
@@ -60,7 +60,7 @@ PWA app for Škoda auto
     example request:
     ```
     {
-        "roomId":<integer>
+        "id":<integer>
         "data":{
             "name": <string>
             "description": <string>
@@ -80,13 +80,13 @@ PWA app for Škoda auto
     example request:
     ```
     {
-        "roomId":<integer>
+        "id":<integer>
     }
     ```
     example response:
     ```
     {   
-        "roomId": <room id>
+        "id": <room id>
         "schedule_list":[
             {
                 "owner": <user id>
@@ -114,7 +114,7 @@ PWA app for Škoda auto
     example response:
     ```
     {   
-        "roomId": <room id>
+        "id": <room id>
         "schedule_list":[
             {
                 "owner": <user id>

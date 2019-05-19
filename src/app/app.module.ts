@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportFaultUtilityDialogComponent } from './report-fault-utility-dialog/report-fault-utility-dialog.component';
 import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 import { MaterialModule } from './material/material.module';
+import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MaterialModule } from './material/material.module';
     UtilityContainerComponent,
     ScheduleComponent,
     ReportFaultUtilityDialogComponent,
-    ScheduleDialogComponent
+    ScheduleDialogComponent,
+    MeetingDialogComponent
   ],
   imports: [
     BrowserModule,
