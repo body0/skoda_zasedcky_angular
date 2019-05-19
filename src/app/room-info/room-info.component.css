@@ -27,7 +27,7 @@
 }
 .underline{
     width: fit-content;
-    border-bottom: solid #b0b0b0 1px    ;
+    border-bottom: solid #b0b0b0 1px;
 }
 .nextIn h2{
     font-size: 1.5em;
@@ -90,9 +90,7 @@ button{
     position: fixed;
     z-index: 20;
     background-color: white;
-    border-radius: 0.3em;
-
-     
+    border-radius: 0.3em;   
 
     margin: auto;
     top: auto;

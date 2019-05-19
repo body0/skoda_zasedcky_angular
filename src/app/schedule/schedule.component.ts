@@ -12,6 +12,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   WiewWidth = 2;
   StyleBypass = ['calc(', '*', ')']
   WiewsData = [];
+  ScheduleList = [];
   /* [ //wiew slide
     {
       time: <time to display>
@@ -20,6 +21,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
           start: <hours from element start>
           meetingLength: <leingh of meeting in hours
           name: <name of meeting>
+          owner: <email>
+
         }
       ] 
     }
@@ -43,6 +46,9 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
   }
+  showMeetingInfo(id:number){
+
+  }
   ngAfterViewInit(): void {
     // move sliding window to position of curent time
     const date = new Date();
@@ -56,16 +62,19 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       .then((data: SheduleData) => {
         RawData = data;
         console.log(data)
-        data.schedule_list.forEach((val) => {
+        data.schedule_list.forEach((val, i) => {
           const start = new Date(val.start);
           const end = new Date(val.end);
           const dateDiff = end.getTime() - start.getTime();
           console.log(wiewBox.clientWidth, dateDiff, dateDiff / 3600000)
           this.WiewsData[start.getHours()].data.push({
+            id: i,
             name: val.name,
+            owner: val.owner,
             start: wiewBox.clientWidth * (start.getMinutes() / 60 + ((true) ? 0.5 : 0)),
             meetingLength: wiewBox.clientWidth * (dateDiff / 3600000)//(1000 *60 *60) 
           })
+          this.ScheduleList.push(val);
         })
       })
 

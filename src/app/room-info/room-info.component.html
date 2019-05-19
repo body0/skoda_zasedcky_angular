@@ -13,11 +13,18 @@
 
   </div>
   <div class="blockContainer" style="background-color: rgba(255,255,255,0);">
-    <dir class="nextIn subBlockContainer" style="background-color: white; margin-bottom: 0;">
+    <dir class="nextIn subBlockContainer" style="
+      background-color: white;
+      margin-bottom: 0;
+      box-shadow:  2px 2px 6px#555555;
+      z-index: 2;">
       <h2>Next In:</h2>
       <h3>20 min</h3>
-      <button mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show schedule</button>
-      
+      <button *ngIf="showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Hide
+        schedule</button>
+      <button *ngIf="!showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show
+        schedule</button>
+
     </dir>
     <app-schedule *ngIf="showShedule"></app-schedule>
   </div>
@@ -25,10 +32,10 @@
     <dir class="faults subBlockContainer">
       <h2>Utility and faults:</h2>
       <div class="utilitContainer" style="margin: 1em auto 0 auto;">
-        <div *ngFor="let utility of UtilityImageURLList;"> 
-            <img src={{utility}} alt="utility picture">
+        <div *ngFor="let utility of UtilityImageURLList;">
+          <img src={{utility}} alt="utility picture">
         </div>
-       <!--  <div style="position:relative;">
+        <!--  <div style="position:relative;">
           <img style="position:absolute" src="../../assets/img/utility/dvř.png" alt="">
         </div>
         <div>
@@ -36,7 +43,8 @@
         </div> -->
       </div>
       <h3>2 Reported Faults</h3>
-      <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report Failure</button>
+      <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report
+        Failure</button>
       <div *ngIf="moreFaultsMode">
         <div class="moreFaults">
           Fault header

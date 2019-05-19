@@ -39,11 +39,11 @@ export class ApiService {
             description: "Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu.\
             Impetus malorum ocurreret et sed, eam ex ubique debitis feugait. Probatus eleifend pro in, mea nullam intellegat\
             eu. Accusamus suscipiantur eam ne.",
-            utility: {
-              tv: true,
-              door: false,
-              reproductor: false,
-            },
+            utility: [
+              "tv",
+              "door",
+              "reproductor"
+            ],
             reportedDefects: [
               {
                 name: "demaged HDMI conector",
@@ -87,6 +87,7 @@ export class ApiService {
             schedule_list:[
               {
                 name: "Velmi důležitá schůze",
+                owner: "nykl@skoda.cz",
                 start: "2019-05-19T18:00:00",
                 end: "2019-05-19T19:00:00"
               }
@@ -99,6 +100,7 @@ export class ApiService {
 
 export class Meeting{
   public name:string;
+  public owner:string;
   public start:string;
   public end:string;
 }

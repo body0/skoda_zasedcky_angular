@@ -35,7 +35,7 @@ export class RoomInfoComponent implements OnInit {
           defect = res.reportedDefects.map((val) => val.defectUtilyty);
         }
         if ("utility" in res) {
-          console.log("in")
+          console.log("in", res.utility)
           this.UtilityImageURLList = res.utility.map((val) => {
             if (val in defect)
               return '../../assets/img/utility/' + val + '-defect.png';
@@ -66,7 +66,7 @@ export class RoomInfoComponent implements OnInit {
     });
   } */
   showSchedule() {
-    this.showShedule = true;
+    this.showShedule = !this.showShedule;
   }
   reportFaultUtility() {
     const dialogRef = this.dialog.open(ReportFaultUtilityDialogComponent, {
