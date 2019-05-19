@@ -2,3 +2,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* .mat-form-field-empty.mat-form-field-label {
+    background: green;
+    color:green;
+}
+
+.mat-form-field-underline {
+    background-color: green;
+    color:blue;
+}
+
+::ng-deep .mat-form-field{
+    color:red
+}
+mat-focused .mat-form-field-label{ color: #ee6e73; } .mat-focused .mat-form-field-underline .mat-form-field-ripple{ background: #ee6e73; } */

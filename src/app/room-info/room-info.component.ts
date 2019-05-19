@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../api.service';
+import {MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ReportFaultUtilityDialogComponent } from '../report-fault-utility-dialog/report-fault-utility-dialog.component';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 
 @Component({
   selector: 'app-room-info',
@@ -13,7 +16,7 @@ export class RoomInfoComponent implements OnInit {
   RoomInfo = {}   
   UtilityImageURLList = []
 
-  constructor(private apiServise: ApiService) {
+  constructor(private apiServise: ApiService, public dialog: MatDialog) {
     
   }
   @Input("RoomID")
@@ -52,7 +55,14 @@ export class RoomInfoComponent implements OnInit {
     this.moreFaultsMode = !this.moreFaultsMode;
   }
   showSchedule(){
-
+    const dialogRef = this.dialog.open(ScheduleDialogComponent, {
+      width: '85vw'
+    });
+  }
+  reportFaultUtility(){
+    const dialogRef = this.dialog.open(ReportFaultUtilityDialogComponent, {
+      width: '85vw'
+    });
   }
 
 }

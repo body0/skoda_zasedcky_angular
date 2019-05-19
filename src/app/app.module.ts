@@ -14,9 +14,9 @@ import { UtilityContainerComponent } from './utility-container/utility-container
 import { ScheduleComponent } from './schedule/schedule.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
 import { ReportFaultUtilityDialogComponent } from './report-fault-utility-dialog/report-fault-utility-dialog.component';
 import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -37,9 +37,13 @@ import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.compo
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    ReportFaultUtilityDialogComponent,
+    ScheduleDialogComponent
+  ]
 })
 export class AppModule { }
