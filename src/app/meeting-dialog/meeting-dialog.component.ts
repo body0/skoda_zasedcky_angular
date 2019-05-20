@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-meeting-dialog',
   templateUrl: './meeting-dialog.component.html',
-  styleUrls: ['./meeting-dialog.component.sass']
+  styleUrls: ['./meeting-dialog.component.css']
 })
 export class MeetingDialogComponent implements OnInit {
 
@@ -15,6 +15,7 @@ export class MeetingDialogComponent implements OnInit {
   ngOnInit() {
     
   }
+  
   exitClick(){
     this.dialogRef.close();
   }

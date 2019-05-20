@@ -13,8 +13,10 @@
     align-items: center;
     z-index: 10;
 }
-img{
+.content{
     margin: auto;
     width:15vw;
     height:15vw;
+    display: flex;
+    align-items: stretch;
 }

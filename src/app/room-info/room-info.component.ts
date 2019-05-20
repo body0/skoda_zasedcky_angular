@@ -4,6 +4,7 @@ import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 import { ReportFaultUtilityDialogComponent } from '../report-fault-utility-dialog/report-fault-utility-dialog.component';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { LoginService } from '../login.service';
+import { MeetingDialogComponent } from '../meeting-dialog/meeting-dialog.component';
 
 @Component({
   selector: 'app-room-info',
@@ -75,6 +76,16 @@ export class RoomInfoComponent implements OnInit {
       if (data != null) {
         data.email = this.loginSerivse.getLogedUserInfo().email;
           this.apiServise.newDefectReport(this.RoomID, data);
+      }
+
+    });
+  }
+  showAddMeetingDialog(){
+    const dialogRef = this.dialog.open(MeetingDialogComponent, {
+      width: '85vw'
+    }).afterClosed().subscribe((data) => {
+      if (data != null) {
+        var userInfo = this.loginSerivse.getLogedUserInfo().email;         
       }
 
     });

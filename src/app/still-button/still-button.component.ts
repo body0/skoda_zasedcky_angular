@@ -10,7 +10,7 @@ export class StillButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const qrButton = document.getElementById("qrButton");
+   /*  const qrButton = document.getElementById("qrButton");
     const content = document.getElementById("content");
     var redirectUrl
     if(content.hasAttribute("redirect"))
@@ -18,7 +18,7 @@ export class StillButtonComponent implements OnInit {
     qrButton.addEventListener('click', () => {
       if(redirectUrl)
         window.location.href = window.location.origin + redirectUrl;
-    });
+    }); */
   }
 
 }

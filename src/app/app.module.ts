@@ -18,6 +18,9 @@ import { ReportFaultUtilityDialogComponent } from './report-fault-utility-dialog
 import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 import { MaterialModule } from './material/material.module';
 import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,19 +36,22 @@ import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.componen
     ScheduleComponent,
     ReportFaultUtilityDialogComponent,
     ScheduleDialogComponent,
-    MeetingDialogComponent
+    MeetingDialogComponent,
+    MeetingInfoDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents:[
     ReportFaultUtilityDialogComponent,
-    ScheduleDialogComponent
+    ScheduleDialogComponent,
+    MeetingDialogComponent
   ]
 })
 export class AppModule { }

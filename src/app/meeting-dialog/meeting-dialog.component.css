@@ -1,0 +1,9 @@
+.full-width{
+    width: 100%;
+}
+.submit{
+    width: 100%;
+    margin: auto; border: 0px; 
+    background-color: #4ba82e;
+    color: white;
+}

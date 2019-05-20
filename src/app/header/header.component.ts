@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ApiService } from "../api.service"
 
 @Component({
@@ -8,6 +8,7 @@ import { ApiService } from "../api.service"
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() InstallDialog;
   @Output() GlobaStateChange = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
@@ -35,8 +36,14 @@ export class HeaderComponent implements OnInit {
 
   }
   changeGlobalState(newState: number) {
-
     this.GlobaStateChange.emit(newState);
   }
-
+  tryShowInstallDialog(){
+    if(this.InstallDialog != undefined)
+      this.InstallDialog();
+    else{
+      alert("Feature not suported in this brouer")
+      console.warn("PWA install dialog event fail")
+    }
+  }
 }
