@@ -1,0 +1,16 @@
+.mainBlock *{
+    margin: 0;
+}
+h2{
+    font-size: 2em;
+}
+h3{
+    font-size: 1.4em;
+}
+.attendentsBlock{
+    display: flex;
+    flex-direction: column;
+}
+.attender{
+    
+}

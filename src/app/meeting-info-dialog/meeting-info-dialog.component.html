@@ -1,3 +1,14 @@
-<p>
-  meeting-info-dialog works!
-</p>
+<div class="mainBlock">
+  <div style="
+  width: fit-content;
+  border-bottom: solid #b0b0b0;">
+    <h2>{{Data.name}}</h2>
+    <h3>RoomId: {{Data.id}}</h3>
+    <h3>Owner: {{Data.owner}}</h3>
+  </div>
+  <p>Description:</p>
+  <p>{{Data.description}}</p>
+  <div class="attendentsBlock">
+    <div *ngFor="let attender of Data.attenders;" class="attender"></div>
+  </div>
+</div>

@@ -51,7 +51,8 @@ import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-d
   entryComponents:[
     ReportFaultUtilityDialogComponent,
     ScheduleDialogComponent,
-    MeetingDialogComponent
+    MeetingDialogComponent,
+    MeetingInfoDialogComponent
   ]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-meeting-info-dialog',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeetingInfoDialogComponent implements OnInit {
 
-  constructor() { }
+  Data;
+  constructor(
+    public dialogRef: MatDialogRef<MeetingInfoDialogComponent>) { }
 
   ngOnInit() {
+  }
+  exitClick(){
+    this.dialogRef.close();
   }
 
 }
