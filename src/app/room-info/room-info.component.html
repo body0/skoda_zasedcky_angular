@@ -30,7 +30,7 @@
   </div>
   <div class="blockContainer">
     <dir class="faults subBlockContainer">
-      <h2>Utility and faults:</h2>
+      <h2>Utilities and faults:</h2>
       <div class="utilitContainer" style="margin: 1em auto 0 auto;">
         <div *ngFor="let utility of UtilityImageURLList;">
           <img src={{utility}} alt="utility picture">
@@ -44,7 +44,7 @@
       </div>
       <h3>2 Reported Faults</h3>
       <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report
-        Failure</button>
+        failure</button>
       <div *ngIf="moreFaultsMode">
         <div class="moreFaults">
           Fault header

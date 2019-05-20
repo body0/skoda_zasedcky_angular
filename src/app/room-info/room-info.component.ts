@@ -16,7 +16,11 @@ export class RoomInfoComponent implements OnInit {
   moreInfoMode: boolean = false;
   moreFaultsMode: boolean = false;
   showShedule:boolean = false;
-  RoomInfo = {}
+  RoomInfo = {
+    id: 0,
+    chair: 0,
+    contact: ""
+  }
   UtilityImageURLList = []
 
   constructor(
@@ -39,9 +43,9 @@ export class RoomInfoComponent implements OnInit {
           console.log("in", res.utility)
           this.UtilityImageURLList = res.utility.map((val) => {
             if (val in defect)
-              return '../../assets/img/utility/' + val + '-defect.png';
+              return 'assets/img/utility/' + val + '-defect.png';
             else
-              return '../../assets/img/utility/' + val + '.png';
+              return 'assets/img/utility/' + val + '.png';
           })
         }
         this.RoomInfo = res;
@@ -50,7 +54,7 @@ export class RoomInfoComponent implements OnInit {
   @Input("RoomSchedule")
   set RoomSchedule(RoomSchedule) {
     this.apiServise.getRoomInfo(RoomSchedule)
-      .then((res) => {
+      .then((res:{ id: number; chair: number; contact: string; }) => {
         this.RoomInfo = res;
       })
   }

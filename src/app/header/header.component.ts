@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() InstallDialog;
   @Output() GlobaStateChange = new EventEmitter();
+  @Output() SearchId = new EventEmitter();
 
   constructor(private apiService: ApiService) { }
 
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit {
   search() {
     const searchBox:any = document.getElementById("searchBox");
     if (!isNaN(searchBox.value))
-      this.apiService.getRoomInfo(parseInt(searchBox.value));
+      this.SearchId.emit(parseInt(searchBox.value))
+      //this.apiService.getRoomInfo(parseInt(searchBox.value));
     else
       console.warn("not a integer in seach bar", searchBox.value)
 

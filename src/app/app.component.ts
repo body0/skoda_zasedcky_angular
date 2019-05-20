@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'skoda';
-  globalState = 3;
+  globalState = 1;
   DEBUG_notSigned =  false;
   roomId = 64;
   DeferredPrompt;
@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
       sub.DeferredPrompt = e;
     });
   }
-  
   changeState(stete){
     if(this.DEBUG_notSigned) return;
     this.globalState = stete;
@@ -32,7 +31,13 @@ export class AppComponent implements OnInit{
     this.globalState = 3;
     console.log("aaa", roomId)
   }
-  
+  hangeStateAndSetRoomId(id){
+    this.changeRoomId(id);
+    this.changeState(3);
+  }
+  changeStateAndSetRoomId(roomid){
+
+  }
   
   aut = function(){
     this.DEBUG_notSigned = !this.DEBUG_notSigned;

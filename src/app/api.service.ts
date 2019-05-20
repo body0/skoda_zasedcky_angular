@@ -88,8 +88,8 @@ export class ApiService {
               {
                 name: "Velmi důležitá schůze",
                 owner: "nykl@skoda.cz",
-                start: "2019-05-19T18:00:00",
-                end: "2019-05-19T19:00:00"
+                start: "2019-05-20T12:00:00",
+                end: "2019-05-20T12:45:00"
               }
             ]
           });    

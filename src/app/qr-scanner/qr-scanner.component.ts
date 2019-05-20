@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import QrScanner from './qr-scanner.min.js';
+import QrScanner from './assets/qr-scanner.min.js';
 import { strictEqual } from 'assert';
 
 @Component({
