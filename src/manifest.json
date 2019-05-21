@@ -3,7 +3,7 @@
   "short_name": "Zasedačky",
   "theme_color": "#4AA82E",
   "background_color": "#fafafa",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "icons": [

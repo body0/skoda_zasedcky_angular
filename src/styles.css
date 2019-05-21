@@ -1,11 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
+
+@font-face {
+    font-family: "SkodaFont";
+    src: url(src/assets/SKODANext-Light.ttf) format("truetype");
+}
+
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: url('./assets/img/10125.jpg');
-  background-repeat: repeat;
+    font-family: SkodaFont; 
+    background-image: url('./assets/img/bg.png');
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
 }

@@ -52,7 +52,7 @@ export class QrScannerComponent implements OnInit, OnDestroy {
         console.log(sup)
         sup.scanner = new QrScanner(video, result => {
           console.log("A"+result+"A");
-          console.log(parseInt(result));
+          //console.log(parseInt(result));
           /* console.log("A"+result+"A");
           var myRegexp = /^room_id:(\d+)\r\n$/g;
           //var myRegexp = new RegExp("^(.*)$");
@@ -62,7 +62,7 @@ export class QrScannerComponent implements OnInit, OnDestroy {
             
             this.SetRoomId.emit(result.match(myRegexp)[0])
           } */
-          sup.SetRoomId.emit(parseInt(result))
+          sup.SetRoomId.emit(String(result))
           sup.scanner.stop();
           //pop up and wait redirect
         });

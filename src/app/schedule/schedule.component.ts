@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ApiService, Meeting, SheduleData } from '../api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -13,7 +13,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   StyleBypass = ['calc(', '*', ')']
   WiewsData = [];
   ScheduleList = [];
-  @Input("RoomSchedule") RoomSchedule;
   /* [ //wiew slide
     {
       time: <time to display>

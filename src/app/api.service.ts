@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
 
-  ApiOrigin = " http://:3000"
+  ApiOrigin = " http://body0.ml:3000"
   GetRoomInfoURL = "/api/roomData"
   GetRoomShedule = "/api/roomSchedule"
   NewDefectReport = "/api/newDefectReport"
@@ -50,7 +50,8 @@ export class ApiService {
                 reportDate: "2019-5-5",
                 expectedRepairDate: "2019-5-30",
                 description: "Tv cannot recognize conected computer",
-                defectUtilyty: "TV"
+                defectUtilyty: "TV",
+                email: "nykl-support@skoda.cz"
               }
             ]
           })//json end
@@ -88,8 +89,9 @@ export class ApiService {
               {
                 name: "Velmi důležitá schůze",
                 owner: "nykl@skoda.cz",
-                start: "2019-05-20T12:00:00",
-                end: "2019-05-20T12:45:00"
+                start: "2019-05-21T12:00:00",
+                end: "2019-05-21T12:45:00", 
+                description: "long description"
               }
             ]
           });    

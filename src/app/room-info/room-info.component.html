@@ -19,14 +19,14 @@
       box-shadow:  2px 2px 6px#555555;
       z-index: 2;">
       <h2>Next In:</h2>
-      <h3>20 min</h3>
+      <h3>{{NextInText}}</h3>
       <button *ngIf="showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Hide
         schedule</button>
       <button *ngIf="!showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show
         schedule</button>
 
     </dir>
-    <app-schedule *ngIf="showShedule" [RoomSchedule]="RoomSchedule"></app-schedule>
+    <app-schedule *ngIf="showShedule"></app-schedule>
   </div>
   <div class="blockContainer">
     <dir class="faults subBlockContainer">
@@ -42,11 +42,18 @@
           <img src="../../assets/img/utility/rpr.png" alt="">
         </div> -->
       </div>
-      <h3>2 Reported Faults</h3>
+      <h3 *ngIf="FaultList.length != 0">{{FaultList.length}} Reported Faults</h3>
+      <h3 *ngIf="FaultList.length == 0" style="color:#4AA82E;">No Faults Reported</h3>
       <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report
         failure</button>
       <div *ngIf="moreFaultsMode">
-        <div class="moreFaults">
+        <div *ngFor="let fault of FaultList;" class="moreFaults">
+          {{fault.name}}
+          <p>{{fault.description}}</p>
+          <p class="faultNote">{{fault.email}}</p>
+          <p class="faultNote">{{fault.reportDate}}</p>
+        </div>
+        <!-- <div class="moreFaults">
           Fault header
           <p>Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu. Impetus malorum
             ocurreret et sed</p>
@@ -59,7 +66,7 @@
             ocurreret et sed</p>
           <p class="faultNote">examle@skoda.com</p>
           <p class="faultNote">7.4.2019</p>
-        </div>
+        </div> -->
       </div>
       <p *ngIf="!moreFaultsMode" class="underline" style="margin-top: 0.8rem;" (click)="moreFaults()">Show more</p>
       <p *ngIf="moreFaultsMode" class="underline" (click)="moreFaults()">Show less</p>
@@ -72,7 +79,7 @@
   <img src="../assets/img/baseline-add-24px.svg" alt="">
 </button> -->
 
-<app-still-button (click)="showAddMeetingDialog()"> 
-    <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
+<app-still-button (click)="showAddMeetingDialog()">
+  <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
       width:15vw;">
 </app-still-button>

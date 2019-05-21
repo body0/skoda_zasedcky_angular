@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService, SheduleData, Meeting } from '../api.service';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportFaultUtilityDialogComponent } from '../report-fault-utility-dialog/report-fault-utility-dialog.component';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
@@ -21,15 +21,17 @@ export class RoomInfoComponent implements OnInit {
     chair: 0,
     contact: ""
   };
-  NextIn = "";
+  FaultList = [];
+  NextInText = "Next Day";
+  NextInColor = "black";
   UtilityImageURLList = [];
   RoomSchedule;
+  this: any;
 
   constructor(
     private apiServise: ApiService,
     private loginSerivse: LoginService,
     private dialog: MatDialog) {
-
   }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class RoomInfoComponent implements OnInit {
         var defect = []
         if ("reportedDefects" in res) {
           defect = res.reportedDefects.map((val) => val.defectUtilyty);
+          this.FaultList = res.reportedDefects;
         }
         if ("utility" in res) {
           console.log("in", res.utility)
@@ -54,9 +57,22 @@ export class RoomInfoComponent implements OnInit {
         }
         this.RoomInfo = res;
       })
+    //var sub = this; 
     this.apiServise.getRoomSchedule(parseInt(RoomID))
-      .then((res) => {
-
+      .then((res:SheduleData) => {
+        console.log("before in", res)
+          this.RoomSchedule = res;
+          //linear search, idealy change it to some sort of binary search
+          var curentTime = (new Date()).getTime(); 
+          for(let val of res.schedule_list){
+            console.log(new Date(val.start).getTime(), curentTime)
+            if(new Date(val.start).getTime() > curentTime){
+              var utc = (new Date(val.start).getTime() -curentTime);
+              //console.log("in",  (new Date(val.start).getTime() -curentTime) /(1000*60)) 
+              this.NextInText = String( Math.floor(utc /(1000 *60 *60) )) + "hr  " + String( Math.floor(utc /(1000 *60) %60)) +"min";
+              break;
+            }
+          }
       })
   }
   /* @Input("RoomSchedule")
