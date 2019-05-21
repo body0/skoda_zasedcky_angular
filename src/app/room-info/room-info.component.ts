@@ -15,18 +15,22 @@ export class RoomInfoComponent implements OnInit {
 
   moreInfoMode: boolean = false;
   moreFaultsMode: boolean = false;
-  showShedule:boolean = false;
+  showShedule: boolean = false;
   RoomInfo = {
     id: 0,
     chair: 0,
     contact: ""
-  }
-  UtilityImageURLList = []
+  };
+  NextIn = "";
+  UtilityImageURLList = [];
+  RoomSchedule;
 
   constructor(
     private apiServise: ApiService,
     private loginSerivse: LoginService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+
+  }
 
   ngOnInit() {
   }
@@ -50,14 +54,15 @@ export class RoomInfoComponent implements OnInit {
         }
         this.RoomInfo = res;
       })
-  }
-  @Input("RoomSchedule")
-  set RoomSchedule(RoomSchedule) {
-    this.apiServise.getRoomInfo(RoomSchedule)
-      .then((res:{ id: number; chair: number; contact: string; }) => {
-        this.RoomInfo = res;
+    this.apiServise.getRoomSchedule(parseInt(RoomID))
+      .then((res) => {
+
       })
   }
+  /* @Input("RoomSchedule")
+  set RoomSchedule(RoomSchedule) {
+
+  } */
 
   moreInfo() {
     this.moreInfoMode = !this.moreInfoMode;
@@ -79,17 +84,17 @@ export class RoomInfoComponent implements OnInit {
     }).afterClosed().subscribe((data) => {
       if (data != null) {
         data.email = this.loginSerivse.getLogedUserInfo().email;
-          this.apiServise.newDefectReport(this.RoomID, data);
+        this.apiServise.newDefectReport(this.RoomID, data);
       }
 
     });
   }
-  showAddMeetingDialog(){
+  showAddMeetingDialog() {
     const dialogRef = this.dialog.open(MeetingDialogComponent, {
       width: '85vw'
     }).afterClosed().subscribe((data) => {
       if (data != null) {
-        var userInfo = this.loginSerivse.getLogedUserInfo().email;         
+        var userInfo = this.loginSerivse.getLogedUserInfo().email;
       }
 
     });

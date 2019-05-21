@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
 
-  ApiOrigin = " http://localhost:3000"
+  ApiOrigin = " http://:3000"
   GetRoomInfoURL = "/api/roomData"
   GetRoomShedule = "/api/roomSchedule"
   NewDefectReport = "/api/newDefectReport"
