@@ -39,7 +39,7 @@ export class RoomInfoComponent implements OnInit {
 
   @Input("RoomID")
   set RoomID(RoomID) {
-    this.apiServise.getRoomInfo(parseInt(RoomID))
+    this.apiServise.getRoomInfo(RoomID)
       .then((res: any) => {
         var defect = []
         if ("reportedDefects" in res) {

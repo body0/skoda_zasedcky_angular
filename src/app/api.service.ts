@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
 
-  ApiOrigin = " http://body0.ml:3000"
+  ApiOrigin = "https://body0.ml"
   GetRoomInfoURL = "/api/roomData"
   GetRoomShedule = "/api/roomSchedule"
   NewDefectReport = "/api/newDefectReport"
@@ -14,7 +14,7 @@ export class ApiService {
   HttpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token'
+      'Accept': 'application/json'
     })
   };
 
@@ -22,15 +22,20 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getRoomInfo(roomId: number) {
+      
     //console.log("send data:" + JSON.stringify({ room_id: roomId }))
     return new Promise((resolve, reject) => { 
+      
+      console.log(JSON.stringify({ id: roomId }), this.ApiOrigin + this.GetRoomInfoURL)
       this.http.post(this.ApiOrigin + this.GetRoomInfoURL, JSON.stringify({ id: roomId }), this.HttpOptions)
         .toPromise()
         .then(res => {
+          
           console.log("reseve data", res)
           resolve(res);
         })
         .catch(res => {
+          console.log(res)
           resolve({
             id: 24,
             name: "rohova zasedska",

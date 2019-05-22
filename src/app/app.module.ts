@@ -21,6 +21,7 @@ import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.componen
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-dialog.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-d
     ReportFaultUtilityDialogComponent,
     ScheduleDialogComponent,
     MeetingDialogComponent,
-    MeetingInfoDialogComponent
+    MeetingInfoDialogComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
