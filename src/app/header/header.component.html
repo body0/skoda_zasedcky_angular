@@ -1,4 +1,4 @@
-<div class="top">      
+<div class="top">
   <img id="sideMenu" src="assets/img/baseline-menu-24px.svg" alt="menu" style="
       width: 6vh;
       ">
@@ -6,15 +6,14 @@
         display: flex;
         justify-items: center;">
     <img (click)="search()" src="assets/img/baseline-search-24px.svg" alt="search" style="width: 8vh;">
-    <input id="searchBox" value="" class="search" type="text" >
+    <input id="searchBox" value="" class="search" type="text">
   </div>
 </div>
 <div id="sideBlock" class="side" style="width: 60%;">
   <img id="logoBlock" class="logo" src="assets/img/lgs.jpg">
-  <img class="clearBut" id="exitButton" src="assets/img/baseline-clear-24px.svg"
-       alt="exit" style="width: 2em;">
-  <li class="list" style="
-      font-size: 1.8em;
+  <img class="clearBut" id="exitButton" src="assets/img/baseline-clear-24px.svg" alt="exit" style="width: 2em;">
+  <div>
+    <div class="list" style="
       text-align: center;">
       <!-- 
         <a href="./index.html">Kalendář</a>
@@ -22,12 +21,15 @@
         <a href="./index.html">Účet</a>
         <a href="./index.html">O nás</a>
        -->
-      
+
       <div (click)="changeGlobalState(1)">QR-Code Reader</div>
-      <div (click)="changeGlobalState(-1)">Diary</div>
-      <div (click)="changeGlobalState(-1)">Account</div>
+      <!-- <div (click)="changeGlobalState(-1)">Diary</div>
+      <div (click)="changeGlobalState(-1)">Account</div> -->
       <div (click)="tryShowInstallDialog()">Add to Home screen</div>
       <div (click)="changeGlobalState(-1)">About app</div>
-  </li>
+
+    </div>
+  </div>
+
 </div>
-<script type="text/javascript" src="./move.js"></script> 
+<script type="text/javascript" src="./move.js"></script>

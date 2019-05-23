@@ -2,11 +2,11 @@
 <div >
     <form>
         <mat-form-field color="accent" style="width: 100%;" class="full-width">
-          <input matInput  placeholder="Defect Name">
+          <input [(ngModel)]="data.Name" matInput  placeholder="Defect Name">
         </mat-form-field>
       
         <mat-form-field color="primary" style="width: 100%;" class="full-width">
-          <textarea matInput placeholder="Description" style="height:5em;"></textarea>
+          <textarea [(ngModel)]="data.Description" matInput placeholder="Description" style="height:5em;"></textarea>
         </mat-form-field>
         <button mat-raised-button color="primary"  class="submit" (click)="exitClick()">Report</button>
 

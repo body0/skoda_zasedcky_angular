@@ -7,9 +7,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ApiService {
 
   ApiOrigin = "https://body0.ml"
-  GetRoomInfoURL = "/api/roomData"
+  GetRoomInfo = "/api/roomData"
   GetRoomShedule = "/api/roomSchedule"
-  NewDefectReport = "/api/newDefectReport"
+  NewDefectReport = "/api/newFault"
+  NewMeeting = "/api/addRoomReservation"
 
   HttpOptions = {
     headers: new HttpHeaders({
@@ -22,22 +23,23 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getRoomInfo(roomId: number) {
-      
+
     //console.log("send data:" + JSON.stringify({ room_id: roomId }))
-    return new Promise((resolve, reject) => { 
-      
-      console.log(JSON.stringify({ id: roomId }), this.ApiOrigin + this.GetRoomInfoURL)
-      this.http.post(this.ApiOrigin + this.GetRoomInfoURL, JSON.stringify({ id: roomId }), this.HttpOptions)
+    return new Promise((resolve, reject) => {
+
+      console.log(JSON.stringify({ id: roomId }), this.ApiOrigin + this.GetRoomInfo)
+      this.http.post(this.ApiOrigin + this.GetRoomInfo, JSON.stringify({ id: roomId }), this.HttpOptions)
         .toPromise()
         .then(res => {
-          
-          console.log("reseve data", res)
+
+          //console.log("reseve data", res)
           resolve(res);
         })
         .catch(res => {
-          console.log(res)
+         // console.log(res)
           resolve({
             id: 24,
+            id_found: true,
             name: "rohova zasedska",
             chair: 4,
             contact: "nykl.support@skoda.cz",
@@ -63,9 +65,9 @@ export class ApiService {
         })
     });
   }
-  newDefectReport(roomId, data){
-    return new Promise((resolve, reject) => { 
-      this.http.post(this.ApiOrigin + this.GetRoomInfoURL, JSON.stringify({ id: roomId, data: data }), this.HttpOptions)
+  newDefectReport(roomId, data) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.ApiOrigin + this.NewDefectReport, JSON.stringify({ id: roomId, data: data }), this.HttpOptions)
         .toPromise()
         .then(res => {
           //console.log(res)
@@ -73,14 +75,19 @@ export class ApiService {
         })
         .catch(res => {
           console.warn("api error from newDefectReport", res)
-          reject();      
+          resolve({
+            "status":"Succes"
+          })
+          //reject();
         })
     });
 
   }
-  getRoomSchedule(roomId){
-    return new Promise((resolve, reject) => { 
-      this.http.post(this.ApiOrigin + this.GetRoomShedule, JSON.stringify({ id: roomId }), this.HttpOptions)
+  getRoomSchedule(roomId) {
+    const dateString = new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, '0') + "-" + String(new Date().getDate()).padStart(2, '0');
+    console.log(dateString)
+    return new Promise((resolve, reject) => {
+      this.http.post(this.ApiOrigin + this.GetRoomShedule, JSON.stringify({ id: roomId, date: dateString }), this.HttpOptions)
         .toPromise()
         .then(res => {
           //console.log("res",res)
@@ -90,28 +97,46 @@ export class ApiService {
           console.warn("api error from getRoomSchedule", res)
           resolve({
             id: 24,
-            schedule_list:[
+            id_found: true,
+            schedule_list: [
               {
                 name: "Velmi důležitá schůze",
                 owner: "nykl@skoda.cz",
-                start: "2019-05-21T12:00:00",
-                end: "2019-05-21T12:45:00", 
+                start: "2019-05-23T16:15:00",
+                end: "2019-05-23T16:45:00",
                 description: "long description"
               }
             ]
-          });    
+          });
+        })
+    });
+  }
+  newMeeting(roomId) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.ApiOrigin + this.NewMeeting, JSON.stringify({ id: roomId, date: "2019-05-22" }), this.HttpOptions)
+        .toPromise()
+        .then(res => {
+          //console.log("res",res)
+          resolve(res);
+        })
+        .catch(res => {
+          console.warn("api error from getRoomSchedule", res)
+          resolve({
+            "status":"Succes"
+          });
         })
     });
   }
 }
 
-export class Meeting{
-  public name:string;
-  public owner:string;
-  public start:string;
-  public end:string;
+export class Meeting {
+  public name: string;
+  public owner: string;
+  public start: string;
+  public end: string;
 }
-export class SheduleData{
-  public id:string;
-  public schedule_list:[Meeting]
+export class SheduleData {
+  public id: string;
+  public id_found: boolean;
+  public schedule_list: [Meeting]
 }

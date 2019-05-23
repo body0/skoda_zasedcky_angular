@@ -16,6 +16,7 @@ export class RoomInfoComponent implements OnInit {
   moreInfoMode: boolean = false;
   moreFaultsMode: boolean = false;
   showShedule: boolean = false;
+  SearchError: number = 0;
   RoomInfo = {
     id: 0,
     chair: 0,
@@ -26,6 +27,7 @@ export class RoomInfoComponent implements OnInit {
   NextInColor = "black";
   UtilityImageURLList = [];
   RoomSchedule;
+  DislayedRoomName;
   this: any;
 
   constructor(
@@ -39,8 +41,19 @@ export class RoomInfoComponent implements OnInit {
 
   @Input("RoomID")
   set RoomID(RoomID) {
+    this.DislayedRoomName = RoomID;
     this.apiServise.getRoomInfo(RoomID)
       .then((res: any) => {
+        console.log("Z", res)
+       
+        if(!res.id_found) {
+          //console.log("Z", res.id_found)
+          this.SearchError = 2;
+          return;
+        }
+        else 
+           this.SearchError = 1;
+
         var defect = []
         if ("reportedDefects" in res) {
           defect = res.reportedDefects.map((val) => val.defectUtilyty);
@@ -58,20 +71,40 @@ export class RoomInfoComponent implements OnInit {
         this.RoomInfo = res;
       })
     //var sub = this; 
-    this.apiServise.getRoomSchedule(parseInt(RoomID))
+    this.apiServise.getRoomSchedule(RoomID)
       .then((res:SheduleData) => {
-        console.log("before in", res)
-          this.RoomSchedule = res;
+           // console.log("before in", res)
+           if(!res.id_found)
+            return;
+          //this.RoomSchedule = res;
           //linear search, idealy change it to some sort of binary search
           var curentTime = (new Date()).getTime(); 
+          var lovestTime = Infinity;
           for(let val of res.schedule_list){
-            console.log(new Date(val.start).getTime(), curentTime)
-            if(new Date(val.start).getTime() > curentTime){
-              var utc = (new Date(val.start).getTime() -curentTime);
-              //console.log("in",  (new Date(val.start).getTime() -curentTime) /(1000*60)) 
-              this.NextInText = String( Math.floor(utc /(1000 *60 *60) )) + "hr  " + String( Math.floor(utc /(1000 *60) %60)) +"min";
+            let testTime = new Date(val.start).getTime();
+            //console.log(new Date(val.start).getTime(), curentTime);
+            //console.log("in",curentTime - testTime, testTime -(new Date(val.end).getTime()))
+            if(curentTime > testTime && curentTime < new Date(val.end).getTime()){
+              console.log
+              this.NextInText = "NOW";(1000*60*60)
+              this.NextInColor = "#F44336";
               break;
             }
+            if(lovestTime > testTime && testTime > curentTime){
+              var utc = (testTime -curentTime);
+              lovestTime = testTime;
+              //console.log("in",  (new Date(val.start).getTime() -curentTime) /(1000*60)) 
+              if(Math.floor(utc /(1000 *60 *60)) == 0)
+                this.NextInText = String( Math.floor(utc /(1000 *60) %60)) +"min";
+              else
+                this.NextInText = String( Math.floor(utc /(1000 *60 *60) )) + "hr  " + String( Math.floor(utc /(1000 *60) %60)) +"min";
+              //console.log("in",testTime -curentTime -(1000*60*60))
+              if(testTime -curentTime < (1000*60*60) )
+                this.NextInColor = "gold";
+              //break;
+            }
+
+            //test if someone 
           }
       })
   }
@@ -96,7 +129,8 @@ export class RoomInfoComponent implements OnInit {
   }
   reportFaultUtility() {
     const dialogRef = this.dialog.open(ReportFaultUtilityDialogComponent, {
-      width: '85vw'
+      width: '85vw',
+      data: { Name: "", Description: ""}
     }).afterClosed().subscribe((data) => {
       if (data != null) {
         data.email = this.loginSerivse.getLogedUserInfo().email;

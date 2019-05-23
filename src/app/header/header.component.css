@@ -27,7 +27,7 @@
     overflow-y: auto;
     border-right: 2px  solid black;
     left: -2px;
-    transition:width 250ms ease-in-out;
+    transition:width 150ms ease-in-out;
     z-index: 10;
 }
 .clearBut{
@@ -37,20 +37,24 @@
 }
 .list{
     margin: 5vw 0 0 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-size: 1.8rem;
     text-align: center;
 
-    text-decoration-line: none;
+   /*  text-decoration-line: none;
+    height: 100%; */
     display: flex;
     flex-flow: column;
+    align-items: stretch;
+    justify-content: space-between;
     
+    position: relative;
 }
 .list *{
     color: white;
     cursor: none;
     text-decoration: none;
-    padding: 1em;
+    padding: 1rem;
 }
 .logo{
     position: relative;
@@ -61,6 +65,7 @@
     left: 0px;
 }.search{
     position: static;
+    padding-left: 1rem;
     margin: auto 3%;
     border-radius: 5vw;
     height: 40%;

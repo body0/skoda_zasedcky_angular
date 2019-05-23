@@ -11,36 +11,46 @@ export class HeaderComponent implements OnInit {
   @Input() InstallDialog;
   @Output() GlobaStateChange = new EventEmitter();
   @Output() SearchId = new EventEmitter();
+  Side;
+
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     const menu = document.getElementById('sideMenu');
     const exit = document.getElementById('exitButton');
-    const side = document.getElementById('sideBlock');
+    this.Side = document.getElementById('sideBlock');
 
     menu.addEventListener("click", () => {
-      side.style.width = "60%";
+      this.Side.style.width = "60%";
     });
 
     exit.addEventListener("click", () => {
-      side.style.width = "0px";
+      this.Side.style.width = "0px";
     });
-    side.style.width = "0px"
+    this.Side.style.width = "0px"
+  }
+  tryCloseWindow(){
+    this.Side.style.width = "0px";
   }
   search() {
+    this.tryCloseWindow();
     const searchBox:any = document.getElementById("searchBox");
-    if (!isNaN(searchBox.value))
+    console.log("Y",searchBox.value)
+    this.SearchId.emit(searchBox.value)
+    /* if (!isNaN(searchBox.value))
       this.SearchId.emit(parseInt(searchBox.value))
       //this.apiService.getRoomInfo(parseInt(searchBox.value));
     else
-      console.warn("not a integer in seach bar", searchBox.value)
+      console.warn("not a integer in seach bar", searchBox.value) */
 
   }
   changeGlobalState(newState: number) {
+    this.tryCloseWindow();
     this.GlobaStateChange.emit(newState);
   }
   tryShowInstallDialog(){
+    this.tryCloseWindow();
     if(this.InstallDialog != undefined)
       this.InstallDialog();
     else{

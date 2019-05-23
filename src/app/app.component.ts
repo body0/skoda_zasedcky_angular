@@ -21,9 +21,10 @@ export class AppComponent implements OnInit{
       sub.DeferredPrompt = e;
     });
   }
-  changeState(stete){
+  changeState(state){
+    //console.log("X", state);
     if(this.DEBUG_notSigned) return;
-    this.globalState = stete;
+    this.globalState = state;
   }
   changeRoomId(roomId){
     if(this.DEBUG_notSigned) return;
@@ -31,12 +32,13 @@ export class AppComponent implements OnInit{
     this.globalState = 3;
     console.log("aaa", roomId)
   }
-  hangeStateAndSetRoomId(id){
-    this.changeRoomId(id);
-    this.changeState(3);
-  }
+  /* hangeStateAndSetRoomId(id){
+    
+  } */
   changeStateAndSetRoomId(roomid){
-
+    console.log("X",roomid)
+    this.changeRoomId(roomid);
+    this.changeState(3);
   }
   
   aut = function(){

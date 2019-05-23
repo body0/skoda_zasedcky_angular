@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-report-fault-utility-dialog',
@@ -9,10 +10,18 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class ReportFaultUtilityDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ReportFaultUtilityDialogComponent>) { }
+    private apiServise: ApiService,
+    public dialogRef: MatDialogRef<ReportFaultUtilityDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataReportDefect) { }
 
   exitClick(){
+    
     this.dialogRef.close();
   }
 
+}
+
+export interface DialogDataReportDefect{
+  Name: string,
+  Description: string
 }

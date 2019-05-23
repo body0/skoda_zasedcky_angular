@@ -1,12 +1,13 @@
-<div>
+<div *ngIf="SearchError == 1">
   <div class="blockContainer">
     <dir class="roomInfo subBlockContainer">
-      <h2>ID:{{RoomInfo.id}}</h2>
+      <h2>ID: {{DislayedRoomName}}</h2>
       <h3>Seats: {{RoomInfo.chair}}</h3>
       <h3>Support: {{RoomInfo.contact}}</h3>
-      <p *ngIf="moreInfoMode">Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu.
+      <!-- <p *ngIf="moreInfoMode">Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu.
         Impetus malorum ocurreret et sed, eam ex ubique debitis feugait. Probatus eleifend pro in, mea nullam intellegat
-        eu. Accusamus suscipiantur eam ne.</p>
+        eu. Accusamus suscipiantur eam ne.</p> -->
+      <p *ngIf="moreInfoMode">{{RoomInfo.description}}</p>
       <p *ngIf="!moreInfoMode" class="underline" (click)="moreInfo()">Show more</p>
       <p *ngIf="moreInfoMode" class="underline" (click)="moreInfo()">Show less</p>
     </dir>
@@ -19,7 +20,7 @@
       box-shadow:  2px 2px 6px#555555;
       z-index: 2;">
       <h2>Next In:</h2>
-      <h3>{{NextInText}}</h3>
+      <h3 [ngStyle]="{'color': NextInColor}">{{NextInText}}</h3>
       <button *ngIf="showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Hide
         schedule</button>
       <button *ngIf="!showShedule" mat-raised-button style="margin: auto; border: 0px;" (click)="showSchedule()">Show
@@ -72,6 +73,10 @@
       <p *ngIf="moreFaultsMode" class="underline" (click)="moreFaults()">Show less</p>
     </dir>
   </div>
+  <app-still-button (click)="showAddMeetingDialog()">
+    <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
+          width:15vw;">
+  </app-still-button>
 </div>
 
 <!-- <button mat-icon-button><mat-icon>menu</mat-icon></button>
@@ -79,7 +84,17 @@
   <img src="../assets/img/baseline-add-24px.svg" alt="">
 </button> -->
 
-<app-still-button (click)="showAddMeetingDialog()">
-  <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
-      width:15vw;">
-</app-still-button>
+<div *ngIf="SearchError == 2">
+  <div class="blockContainer" style="position: relative;">
+    <div style="margin: 1rem">
+      <p style="
+          color:#4AA82E;
+          text-align: center;
+          font-size: 4rem;
+          ">
+        ROOM NOT FOUND
+      </p>
+    </div>
+
+  </div>
+</div>

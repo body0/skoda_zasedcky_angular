@@ -22,6 +22,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-dialog.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

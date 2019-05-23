@@ -14,7 +14,7 @@
     <app-list-last *ngSwitchCase="2"></app-list-last>
     <app-room-info [RoomID]="roomId" *ngSwitchCase="3"> </app-room-info>
     <app-schedule *ngSwitchCase="4" ></app-schedule>
-    <app-header [InstallDialog]="DeferredPrompt" (GlobaStateChange)=changeRoomId($event) (SearchId)=changeStateAndSetRoomId($event)></app-header>
+    <app-header [InstallDialog]="DeferredPrompt" (GlobaStateChange)=changeState($event) (SearchId)=changeStateAndSetRoomId($event)></app-header>
 
 
     <div mat-raised-button *ngSwitchCase="1" (click)="changeState(2)" class="fixedButtonCircle">
