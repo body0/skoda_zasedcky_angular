@@ -14,14 +14,17 @@ export class ReportFaultUtilityDialogComponent {
     public dialogRef: MatDialogRef<ReportFaultUtilityDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogDataReportDefect) { }
 
-  exitClick(){
-    
+  exitClick(){  
+    this.data.utility = "tv";//FOR TESTING / IN PROGRES
     this.dialogRef.close();
   }
 
 }
 
 export interface DialogDataReportDefect{
-  Name: string,
-  Description: string
+  room_name: string,
+  fault_name: string,
+  fault_description: string,
+  utility:string,
+  date_fault:string //YYYY-MM-DD
 }

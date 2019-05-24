@@ -23,21 +23,18 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getRoomInfo(roomId: number) {
-
-    //console.log("send data:" + JSON.stringify({ room_id: roomId }))
     return new Promise((resolve, reject) => {
-
       console.log(JSON.stringify({ id: roomId }), this.ApiOrigin + this.GetRoomInfo)
       this.http.post(this.ApiOrigin + this.GetRoomInfo, JSON.stringify({ id: roomId }), this.HttpOptions)
         .toPromise()
         .then(res => {
-
-          //console.log("reseve data", res)
           resolve(res);
         })
         .catch(res => {
-         // console.log(res)
-          resolve({
+          reject(res);
+
+          //FOR TESTING / EXAMPLE RESPONSE          
+          /* resolve({
             id: 24,
             id_found: true,
             name: "rohova zasedska",
@@ -61,7 +58,7 @@ export class ApiService {
                 email: "nykl-support@skoda.cz"
               }
             ]
-          })//json end
+          })//json end */
         })
     });
   }
@@ -70,13 +67,14 @@ export class ApiService {
       this.http.post(this.ApiOrigin + this.NewDefectReport, JSON.stringify({ id: roomId, data: data }), this.HttpOptions)
         .toPromise()
         .then(res => {
-          //console.log(res)
           resolve(res);
         })
         .catch(res => {
           console.warn("api error from newDefectReport", res)
+
+          //FOR TESTING / EXAMPLE RESPONSE  
           resolve({
-            "status":"Succes"
+            "status": "Succes"
           })
           //reject();
         })
@@ -85,17 +83,17 @@ export class ApiService {
   }
   getRoomSchedule(roomId) {
     const dateString = new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, '0') + "-" + String(new Date().getDate()).padStart(2, '0');
-    console.log(dateString)
     return new Promise((resolve, reject) => {
       this.http.post(this.ApiOrigin + this.GetRoomShedule, JSON.stringify({ id: roomId, date: dateString }), this.HttpOptions)
         .toPromise()
         .then(res => {
-          //console.log("res",res)
           resolve(res);
         })
         .catch(res => {
-          console.warn("api error from getRoomSchedule", res)
-          resolve({
+          reject(res);
+
+          //FOR TESTING / EXAMPLE RESPONSE  
+          /* resolve({
             id: 24,
             id_found: true,
             schedule_list: [
@@ -107,11 +105,14 @@ export class ApiService {
                 description: "long description"
               }
             ]
-          });
+          });//json end */
         })
     });
   }
-  newMeeting(roomId) {
+  newMeeting(roomId, data) {
+    const dateString = new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, '0') + "-" + String(new Date().getDate()).padStart(2, '0');
+    data.room_name = roomId;
+    data.date_fault = dateString;
     return new Promise((resolve, reject) => {
       this.http.post(this.ApiOrigin + this.NewMeeting, JSON.stringify({ id: roomId, date: "2019-05-22" }), this.HttpOptions)
         .toPromise()
@@ -121,8 +122,9 @@ export class ApiService {
         })
         .catch(res => {
           console.warn("api error from getRoomSchedule", res)
+          //FOR TESTING / EXAMPLE RESPONSE  
           resolve({
-            "status":"Succes"
+            "status": "Succes"
           });
         })
     });

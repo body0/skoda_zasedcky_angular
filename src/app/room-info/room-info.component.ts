@@ -16,7 +16,7 @@ export class RoomInfoComponent implements OnInit {
   moreInfoMode: boolean = false;
   moreFaultsMode: boolean = false;
   showShedule: boolean = false;
-  SearchError: number = 0;
+  SearchError: number = 0; //show only backgroud util data arrive
   RoomInfo = {
     id: 0,
     chair: 0,
@@ -24,11 +24,11 @@ export class RoomInfoComponent implements OnInit {
   };
   FaultList = [];
   NextInText = "Next Day";
-  NextInColor = "black";
+  NextInColor = "#4AA82E";
   UtilityImageURLList = [];
   RoomSchedule;
   DislayedRoomName;
-  this: any;
+  //this: any;
 
   constructor(
     private apiServise: ApiService,
@@ -41,26 +41,27 @@ export class RoomInfoComponent implements OnInit {
 
   @Input("RoomID")
   set RoomID(RoomID) {
+    this.RegreshInfo(RoomID);
+  }
+
+  RegreshInfo(RoomID) {
     this.DislayedRoomName = RoomID;
     this.apiServise.getRoomInfo(RoomID)
       .then((res: any) => {
-        console.log("Z", res)
-       
-        if(!res.id_found) {
-          //console.log("Z", res.id_found)
+
+        if (!res.id_found) {//wrong room ID
           this.SearchError = 2;
           return;
         }
-        else 
-           this.SearchError = 1;
+        else
+          this.SearchError = 1;
 
-        var defect = []
+        var defect = [] //for red collor of utility icons 
         if ("reportedDefects" in res) {
           defect = res.reportedDefects.map((val) => val.defectUtilyty);
           this.FaultList = res.reportedDefects;
         }
         if ("utility" in res) {
-          console.log("in", res.utility)
           this.UtilityImageURLList = res.utility.map((val) => {
             if (val in defect)
               return 'assets/img/utility/' + val + '-defect.png';
@@ -70,48 +71,53 @@ export class RoomInfoComponent implements OnInit {
         }
         this.RoomInfo = res;
       })
-    //var sub = this; 
+
     this.apiServise.getRoomSchedule(RoomID)
-      .then((res:SheduleData) => {
-           // console.log("before in", res)
-           if(!res.id_found)
-            return;
-          //this.RoomSchedule = res;
-          //linear search, idealy change it to some sort of binary search
-          var curentTime = (new Date()).getTime(); 
-          var lovestTime = Infinity;
-          for(let val of res.schedule_list){
-            let testTime = new Date(val.start).getTime();
-            //console.log(new Date(val.start).getTime(), curentTime);
-            //console.log("in",curentTime - testTime, testTime -(new Date(val.end).getTime()))
-            if(curentTime > testTime && curentTime < new Date(val.end).getTime()){
-              console.log
-              this.NextInText = "NOW";(1000*60*60)
-              this.NextInColor = "#F44336";
-              break;
-            }
-            if(lovestTime > testTime && testTime > curentTime){
-              var utc = (testTime -curentTime);
-              lovestTime = testTime;
-              //console.log("in",  (new Date(val.start).getTime() -curentTime) /(1000*60)) 
-              if(Math.floor(utc /(1000 *60 *60)) == 0)
-                this.NextInText = String( Math.floor(utc /(1000 *60) %60)) +"min";
-              else
-                this.NextInText = String( Math.floor(utc /(1000 *60 *60) )) + "hr  " + String( Math.floor(utc /(1000 *60) %60)) +"min";
-              //console.log("in",testTime -curentTime -(1000*60*60))
-              if(testTime -curentTime < (1000*60*60) )
-                this.NextInColor = "gold";
-              //break;
+      .then((res: SheduleData) => {
+        if (!res.id_found) {
+          this.NextInText = "Next Day";
+          this.NextInColor = "#4AA82E";
+          return;
+        }
+
+
+        var curentTime = (new Date()).getTime();
+        var lovestTime = Infinity;
+        //linear search, idealy change it to some sort of binary search
+        for (let val of res.schedule_list) {
+          //start of meeting in UTC
+          let testTime = new Date(val.start).getTime();
+
+          //happening right now
+          if (curentTime > testTime && curentTime < new Date(val.end).getTime()) {
+            this.NextInText = "NOW";
+            this.NextInColor = "#F44336";
+            break;
+          }
+
+          //happening in the future and is earlier than 
+          if (lovestTime > testTime && testTime > curentTime) {
+            //time in utc to start of meeting
+            var utc = (testTime - curentTime);
+            lovestTime = testTime;
+
+            // test if time to next meeting si lower than one hour
+            if (Math.floor(utc / (1000 * 60 * 60)) == 0){
+              this.NextInText = String(Math.floor(utc / (1000 * 60) % 60)) + "min";
+              this.NextInColor = "gold";
+            }            
+            else{
+              this.NextInText = String(Math.floor(utc / (1000 * 60 * 60)) - 2) + "hr  " + String(Math.floor(utc / (1000 * 60) % 60)) + "min";
+              this.NextInColor = "#4AA82E";
             }
 
-            //test if someone 
+            /* if (testTime - curentTime < (1000 * 60 * 60))
+              this.NextInColor = "gold";
+            //break; */
           }
+        }
       })
   }
-  /* @Input("RoomSchedule")
-  set RoomSchedule(RoomSchedule) {
-
-  } */
 
   moreInfo() {
     this.moreInfoMode = !this.moreInfoMode;
@@ -119,26 +125,25 @@ export class RoomInfoComponent implements OnInit {
   moreFaults() {
     this.moreFaultsMode = !this.moreFaultsMode;
   }
-  /* showSchedule() {
-    const dialogRef = this.dialog.open(ScheduleDialogComponent, {
-      width: '85vw'
-    });
-  } */
   showSchedule() {
     this.showShedule = !this.showShedule;
   }
+
+  //NOT WORKING - code in progres
   reportFaultUtility() {
     const dialogRef = this.dialog.open(ReportFaultUtilityDialogComponent, {
       width: '85vw',
-      data: { Name: "", Description: ""}
+      data: { Name: "", Description: "" }
     }).afterClosed().subscribe((data) => {
       if (data != null) {
         data.email = this.loginSerivse.getLogedUserInfo().email;
+        //data.room_name = this.DislayedRoomName;
         this.apiServise.newDefectReport(this.RoomID, data);
       }
 
     });
   }
+  //NOT WORKING - code in progres
   showAddMeetingDialog() {
     const dialogRef = this.dialog.open(MeetingDialogComponent, {
       width: '85vw'

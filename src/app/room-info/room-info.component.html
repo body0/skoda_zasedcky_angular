@@ -1,12 +1,9 @@
-<div *ngIf="SearchError == 1">
+<div *ngIf="SearchError == 1"><!-- show data insted of "not found" -->
   <div class="blockContainer">
     <dir class="roomInfo subBlockContainer">
       <h2>ID: {{DislayedRoomName}}</h2>
       <h3>Seats: {{RoomInfo.chair}}</h3>
       <h3>Support: {{RoomInfo.contact}}</h3>
-      <!-- <p *ngIf="moreInfoMode">Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu.
-        Impetus malorum ocurreret et sed, eam ex ubique debitis feugait. Probatus eleifend pro in, mea nullam intellegat
-        eu. Accusamus suscipiantur eam ne.</p> -->
       <p *ngIf="moreInfoMode">{{RoomInfo.description}}</p>
       <p *ngIf="!moreInfoMode" class="underline" (click)="moreInfo()">Show more</p>
       <p *ngIf="moreInfoMode" class="underline" (click)="moreInfo()">Show less</p>
@@ -27,22 +24,24 @@
         schedule</button>
 
     </dir>
-    <app-schedule *ngIf="showShedule"></app-schedule>
+    <app-schedule *ngIf="showShedule" [RoomName]="DislayedRoomName"></app-schedule>
   </div>
+
+
   <div class="blockContainer">
-    <dir class="faults subBlockContainer">
-      <h2>Utilities and faults:</h2>
+    <div class="faults subBlockContainer">
+      <h2>Utilities:</h2>
       <div class="utilitContainer" style="margin: 1em auto 0 auto;">
         <div *ngFor="let utility of UtilityImageURLList;">
           <img src={{utility}} alt="utility picture">
         </div>
-        <!--  <div style="position:relative;">
-          <img style="position:absolute" src="../../assets/img/utility/dvř.png" alt="">
-        </div>
-        <div>
-          <img src="../../assets/img/utility/rpr.png" alt="">
-        </div> -->
       </div>
+    </div>
+  </div>
+
+  <div class="blockContainer">
+    <div class="faults subBlockContainer">
+      <h2>Faults:</h2>
       <h3 *ngIf="FaultList.length != 0">{{FaultList.length}} Reported Faults</h3>
       <h3 *ngIf="FaultList.length == 0" style="color:#4AA82E;">No Faults Reported</h3>
       <button mat-raised-button style="margin: auto; border: 0px;" (click)="reportFaultUtility()">Report
@@ -54,43 +53,25 @@
           <p class="faultNote">{{fault.email}}</p>
           <p class="faultNote">{{fault.reportDate}}</p>
         </div>
-        <!-- <div class="moreFaults">
-          Fault header
-          <p>Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu. Impetus malorum
-            ocurreret et sed</p>
-          <p class="faultNote">examle@skoda.com</p>
-          <p class="faultNote">7.4.2019</p>
-        </div>
-        <div class="moreFaults">
-          Fault header
-          <p>Lorem ipsum dolor sit amet, magna ignota vivendum vel ei, per illum solet nominati eu. Impetus malorum
-            ocurreret et sed</p>
-          <p class="faultNote">examle@skoda.com</p>
-          <p class="faultNote">7.4.2019</p>
-        </div> -->
       </div>
       <p *ngIf="!moreFaultsMode" class="underline" style="margin-top: 0.8rem;" (click)="moreFaults()">Show more</p>
       <p *ngIf="moreFaultsMode" class="underline" (click)="moreFaults()">Show less</p>
-    </dir>
+    </div>
   </div>
-  <app-still-button (click)="showAddMeetingDialog()">
+
+  <app-still-button (click)="showAddMeetingDialog()"> <!-- fixed main button  -->
     <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
           width:15vw;">
   </app-still-button>
 </div>
 
-<!-- <button mat-icon-button><mat-icon>menu</mat-icon></button>
-<button mat-mini-fab class="fixedButtonCircle">
-  <img src="../assets/img/baseline-add-24px.svg" alt="">
-</button> -->
-
-<div *ngIf="SearchError == 2">
+<div *ngIf="SearchError == 2"><!-- server return id not found or no internet conection -->
   <div class="blockContainer" style="position: relative;">
     <div style="margin: 1rem">
       <p style="
           color:#4AA82E;
           text-align: center;
-          font-size: 4rem;
+          font-size: 2.5rem;
           ">
         ROOM NOT FOUND
       </p>

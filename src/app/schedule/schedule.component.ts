@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { ApiService, Meeting, SheduleData } from '../api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -13,6 +13,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   StyleBypass = ['calc(', '*', ')']
   WiewsData = [];
   ScheduleList = [];
+
+  @Input() RoomName: string;
   /* [ //wiew slide
     {
       time: <time to display>
@@ -39,8 +41,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       })
     }
 
-    console.log(this.WiewsData)
-
   }
 
   ngOnInit() {
@@ -57,21 +57,32 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     const wiewBox = document.getElementById("wiewBox");
     var RawData;
     var sub = this;
-
-    this.apiServise.getRoomSchedule(64)
+    //console.log("X",this.RoomName)
+    this.apiServise.getRoomSchedule(this.RoomName)
       .then((data: SheduleData) => {
         RawData = data;
-        console.log(data)
+        if(!data.id_found) {
+          for (let i = 0; i < 24; i++) {//23:30 - 23:30
+            this.WiewsData.push({
+              time: i,
+              data: []
+            })
+          }
+          this.ScheduleList = []
+          return;
+        }
+        //console.log("V",data.schedule_list)
         data.schedule_list.forEach((val, i) => {
+
           const start = new Date(val.start);
           const end = new Date(val.end);
           const dateDiff = end.getTime() - start.getTime();
-          console.log(wiewBox.clientWidth, dateDiff, dateDiff / 3600000)
+          console.log(wiewBox.clientWidth, dateDiff, dateDiff / 3600000, start.getHours(), new Date(val.start))
           this.WiewsData[start.getHours()].data.push({
             id: i,
             name: val.name,
             owner: val.owner,
-            start: wiewBox.clientWidth * (start.getMinutes() / 60 + ((true) ? 0.5 : 0)),
+            start: wiewBox.clientWidth * (start.getMinutes() / 60 + ((true) ? 0.5 : 0) -2),
             meetingLength: wiewBox.clientWidth * (dateDiff / 3600000)//(1000 *60 *60) 
           })
           this.ScheduleList.push(val);

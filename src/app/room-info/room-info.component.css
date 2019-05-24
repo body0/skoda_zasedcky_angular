@@ -32,7 +32,7 @@
     margin: 0;
 }
 .roomInfo h2{
-    font-size: 3em;
+    font-size: 2.2em;
     width: fit-content;
     border-bottom: solid #b0b0b0;
 }
@@ -49,8 +49,9 @@
     border-bottom: solid #b0b0b0;
 }
 .nextIn h3{
+    color: #4AA82E;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 2em;
 }
 button{
     width: 100%; 
