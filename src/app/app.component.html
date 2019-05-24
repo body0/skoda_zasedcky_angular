@@ -1,10 +1,8 @@
 <!-- <div id="dim" class="dimmer" style="display:none;  background-color: gray;"></div> -->
 
 <div [ngSwitch]="globalState">
-
-    <!-- element desain to be directly under to heder, insted of fixed hedder - ONLY TEMPORARY SOLUTION - cause proble later on -->
-    <!-- <div style="margin-top:10vh; padding: 1rem 0"></div> -->
     <app-header [InstallDialog]="DeferredPrompt" (GlobaStateChange)=changeState($event) (SearchId)=changeStateAndSetRoomId($event)></app-header>
+
     <!-- only for testing, loggin menu -->
     <div *ngIf="DEBUG_notSigned" class="login" style="margin-top: 50%; border-radius: 10px">
         <input type="text" placeholder="Uživatelské jméno" id="username" style="font-size:20px">
@@ -13,16 +11,11 @@
         <a href="#" class="support">Potřebujete pomoct?</a>
     </div>
 
-
-
     <app-qr-scanner *ngSwitchCase="1" (GlobaStateChange)=changeState($event) (SetRoomId)=changeRoomId($event)>
     </app-qr-scanner>
     <app-list-last *ngSwitchCase="2" (GlobaStateChange)=changeState($event)></app-list-last>
     <app-room-info [RoomID]="roomId" *ngSwitchCase="3"> </app-room-info>
     <app-about-app *ngSwitchCase="4" (GlobaStateChange)=changeState($event)></app-about-app>
-    <!-- <app-schedule *ngSwitchCase="4" ></app-schedule> -->
-    
-
 
     <!-- <div mat-raised-button *ngSwitchCase="1" (click)="changeState(2)" class="fixedButtonCircle">
         <img redirect="./end" src="assets/img/baseline-undo-24px.svg" alt="back">
