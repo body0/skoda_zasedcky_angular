@@ -24,7 +24,7 @@
         schedule</button>
 
     </dir>
-    <app-schedule *ngIf="showShedule" [RoomName]="DislayedRoomName"></app-schedule>
+    <app-schedule *ngIf="showShedule" [RoomName]="DislayedRoomName" [RawScheuleData]="RoomSchedule"> </app-schedule>
   </div>
 
 
@@ -59,13 +59,15 @@
     </div>
   </div>
 
+  <div style="width:100%; height: 7vh;"></div>
+
   <app-still-button (click)="showAddMeetingDialog()"> <!-- fixed main button  -->
     <img src="../../assets/img/baseline-add-24px.svg" alt="brk" style="
           width:15vw;">
   </app-still-button>
 </div>
 
-<div *ngIf="SearchError == 2"><!-- server return id not found or no internet conection -->
+<div *ngIf="SearchError == 2"><!-- server return id not found -->
   <div class="blockContainer" style="position: relative;">
     <div style="margin: 1rem">
       <p style="
@@ -74,6 +76,28 @@
           font-size: 2.5rem;
           ">
         ROOM NOT FOUND
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="SearchError == 3"><!-- no internet conection -->
+  <div class="blockContainer" style="position: relative;">
+    <div style="margin: 1rem">
+      <p style="
+          color:#4AA82E;
+          text-align: center;
+          font-size: 2.5rem;
+          margin:0.1em;">
+        NETWORK ERROR
+      </p>
+      <p style="
+      color:#4AA82E;
+      text-align: center;
+      font-size: 1.2rem;
+      "> 
+      you are probably ofline
       </p>
     </div>
 

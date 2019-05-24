@@ -1,0 +1,25 @@
+*{
+    color: #505050;
+}
+
+.blockContainer{
+    position: relative;
+    width: 94%;
+    background-color: white;
+    margin: 1em auto;
+    border-radius: 0.3em;
+    box-shadow:  2px 2px 6px#555555;
+}
+
+.underline{
+    width: fit-content;
+    border-bottom: solid #b0b0b0 1px;
+}
+
+h2{
+    font-size: 2rem;
+    margin:0.3em 0;
+}
+p{
+    margin: 0.2rem;
+}

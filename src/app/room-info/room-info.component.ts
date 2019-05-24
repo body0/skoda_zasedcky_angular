@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ApiService, SheduleData, Meeting } from '../api.service';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportFaultUtilityDialogComponent } from '../report-fault-utility-dialog/report-fault-utility-dialog.component';
-import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { LoginService } from '../login.service';
 import { MeetingDialogComponent } from '../meeting-dialog/meeting-dialog.component';
 
@@ -26,8 +25,8 @@ export class RoomInfoComponent implements OnInit {
   NextInText = "Next Day";
   NextInColor = "#4AA82E";
   UtilityImageURLList = [];
-  RoomSchedule;
-  DislayedRoomName;
+  RoomSchedule; //raw data to shcdeule component
+  DislayedRoomName; // room id
   //this: any;
 
   constructor(
@@ -45,7 +44,9 @@ export class RoomInfoComponent implements OnInit {
   }
 
   RegreshInfo(RoomID) {
+    
     this.DislayedRoomName = RoomID;
+    
     this.apiServise.getRoomInfo(RoomID)
       .then((res: any) => {
 
@@ -56,12 +57,21 @@ export class RoomInfoComponent implements OnInit {
         else
           this.SearchError = 1;
 
+        //reset data - Not necessary
+        this.UtilityImageURLList = [];
+        this.FaultList = [];
+        this.RoomInfo = {
+          id: 0,
+          chair: 0,
+          contact: ""
+        };
+
         var defect = [] //for red collor of utility icons 
         if ("reportedDefects" in res) {
           defect = res.reportedDefects.map((val) => val.defectUtilyty);
           this.FaultList = res.reportedDefects;
         }
-        if ("utility" in res) {
+        if ("utility" in res) { //not working properly, need to be finished and tested
           this.UtilityImageURLList = res.utility.map((val) => {
             if (val in defect)
               return 'assets/img/utility/' + val + '-defect.png';
@@ -71,31 +81,37 @@ export class RoomInfoComponent implements OnInit {
         }
         this.RoomInfo = res;
       })
+      .catch( (err) => {
+        this.SearchError = 3;
+      })
 
     this.apiServise.getRoomSchedule(RoomID)
       .then((res: SheduleData) => {
+
         if (!res.id_found) {
           this.NextInText = "Next Day";
           this.NextInColor = "#4AA82E";
           return;
         }
 
+        this.RoomSchedule = res;
 
         var curentTime = (new Date()).getTime();
         var lovestTime = Infinity;
         //linear search, idealy change it to some sort of binary search
         for (let val of res.schedule_list) {
           //start of meeting in UTC
-          let testTime = new Date(val.start).getTime();
+          let testTime = new Date(val.start).getTime() -new Date(val.start).getTimezoneOffset() *1000 *60;
+          let end = new Date(val.end).getTime() -new Date(val.start).getTimezoneOffset() *1000 *60;
 
           //happening right now
-          if (curentTime > testTime && curentTime < new Date(val.end).getTime()) {
+          if (curentTime > testTime && curentTime < end) {
             this.NextInText = "NOW";
             this.NextInColor = "#F44336";
             break;
           }
 
-          //happening in the future and is earlier than 
+          //happening in the future and is earlier than "lovestTime"
           if (lovestTime > testTime && testTime > curentTime) {
             //time in utc to start of meeting
             var utc = (testTime - curentTime);

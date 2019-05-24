@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list-last',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListLastComponent implements OnInit {
 
+  @Output() GlobaStateChange = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeGlobalState(newState: number) {
+    this.GlobaStateChange.emit(newState);
   }
 
 }

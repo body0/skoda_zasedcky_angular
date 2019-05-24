@@ -11,21 +11,9 @@ body {
     margin: 0; 
     font-family: SkodaFont; 
     background-image: url('./assets/img/bg.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-position: center; 
+    background-size: contain; */
+    background-size: 100% 100%;
 }
-/* .mat-form-field-empty.mat-form-field-label {
-    background: green;
-    color:green;
-}
-
-.mat-form-field-underline {
-    background-color: green;
-    color:blue;
-}
-
-::ng-deep .mat-form-field{
-    color:red
-}
-mat-focused .mat-form-field-label{ color: #ee6e73; } .mat-focused .mat-form-field-underline .mat-form-field-ripple{ background: #ee6e73; } */

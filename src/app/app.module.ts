@@ -9,13 +9,10 @@ import { StillButtonComponent } from './still-button/still-button.component';
 import { ListLastComponent } from './list-last/list-last.component';
 import { RoomInfoComponent } from './room-info/room-info.component';
 import { LoginMenuComponent } from './login-menu/login-menu.component';
-import { UtylityListComponent } from './utylity-list/utylity-list.component';
-import { UtilityContainerComponent } from './utility-container/utility-container.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReportFaultUtilityDialogComponent } from './report-fault-utility-dialog/report-fault-utility-dialog.component';
-import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 import { MaterialModule } from './material/material.module';
 import { MeetingDialogComponent } from './meeting-dialog/meeting-dialog.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -23,6 +20,7 @@ import { environment } from '../environments/environment';
 import { MeetingInfoDialogComponent } from './meeting-info-dialog/meeting-info-dialog.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { FormsModule } from '@angular/forms';
+import { AboutAppComponent } from './about-app/about-app.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +31,12 @@ import { FormsModule } from '@angular/forms';
     ListLastComponent,
     RoomInfoComponent,
     LoginMenuComponent,
-    UtylityListComponent,
-    UtilityContainerComponent,
     ScheduleComponent,
     ReportFaultUtilityDialogComponent,
-    ScheduleDialogComponent,
     MeetingDialogComponent,
     MeetingInfoDialogComponent,
-    SideNavComponent
+    SideNavComponent,
+    AboutAppComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +50,6 @@ import { FormsModule } from '@angular/forms';
   bootstrap: [AppComponent],
   entryComponents:[
     ReportFaultUtilityDialogComponent,
-    ScheduleDialogComponent,
     MeetingDialogComponent,
     MeetingInfoDialogComponent
   ]

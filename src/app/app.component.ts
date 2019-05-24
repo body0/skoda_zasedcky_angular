@@ -22,7 +22,6 @@ export class AppComponent implements OnInit{
     });
   }
   changeState(state){
-    //console.log("X", state);
     if(this.DEBUG_notSigned) return;
     this.globalState = state;
   }
@@ -32,16 +31,15 @@ export class AppComponent implements OnInit{
     this.globalState = 3;
     console.log("aaa", roomId)
   }
-  /* hangeStateAndSetRoomId(id){
-    
-  } */
+
   changeStateAndSetRoomId(roomid){
     console.log("X",roomid)
     this.changeRoomId(roomid);
     this.changeState(3);
   }
   
-  aut = function(){
+  //ONLY FOR TESTING
+  aut(){
     this.DEBUG_notSigned = !this.DEBUG_notSigned;
     var dimmer = document.getElementById("dim");
     dimmer.style.display = "none";
