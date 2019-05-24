@@ -65,10 +65,10 @@
     left: 0px;
 }.search{
     position: static;
-    padding-left: 1rem;
+    padding-left: 0.7rem;
     margin: auto 3%;
     border-radius: 5vw;
     height: 40%;
     width: 40vw;
-    font-size: 1.5em;
+    font-size: 1.2rem;
 }

@@ -21,6 +21,9 @@ export class QrScannerComponent implements OnInit, OnDestroy {
     this.scanner.destroy();
     this.scanner = null;
   }
+  changeGlobalState(newState: number) {
+    this.GlobaStateChange.emit(newState);
+  }
 
   ngOnInit() {
     console.log(this)
@@ -31,15 +34,6 @@ export class QrScannerComponent implements OnInit, OnDestroy {
       
       var video = document.getElementById("video")
       var body = document.getElementById('body')
-      /*var st 
-      navigator.mediaDevices.getUserMedia({video: true})
-          .then(function(stream) {
-              st = stream
-              video.srcObject = stream
-          })
-          .catch(function(err) {
-              console.error('INIT FAIL: ' + err)
-          });  */
      
       var sup = this;
       QrScanner.hasCamera()

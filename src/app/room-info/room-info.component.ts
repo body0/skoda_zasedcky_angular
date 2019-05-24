@@ -93,7 +93,7 @@ export class RoomInfoComponent implements OnInit {
           this.NextInColor = "#4AA82E";
           return;
         }
-
+        
         this.RoomSchedule = res;
 
         var curentTime = (new Date()).getTime();
@@ -101,8 +101,8 @@ export class RoomInfoComponent implements OnInit {
         //linear search, idealy change it to some sort of binary search
         for (let val of res.schedule_list) {
           //start of meeting in UTC
-          let testTime = new Date(val.start).getTime() -new Date(val.start).getTimezoneOffset() *1000 *60;
-          let end = new Date(val.end).getTime() -new Date(val.start).getTimezoneOffset() *1000 *60;
+          let testTime = new Date(val.start).getTime() +(new Date(val.start).getTimezoneOffset() *1000 *60);
+          let end = new Date(val.end).getTime() +(new Date(val.start).getTimezoneOffset() *1000 *60);
 
           //happening right now
           if (curentTime > testTime && curentTime < end) {
@@ -123,7 +123,7 @@ export class RoomInfoComponent implements OnInit {
               this.NextInColor = "gold";
             }            
             else{
-              this.NextInText = String(Math.floor(utc / (1000 * 60 * 60)) - 2) + "hr  " + String(Math.floor(utc / (1000 * 60) % 60)) + "min";
+              this.NextInText = String(Math.floor(utc / (1000 * 60 * 60))) + "hr  " + String(Math.floor(utc / (1000 * 60) % 60)) + "min";
               this.NextInColor = "#4AA82E";
             }
 
